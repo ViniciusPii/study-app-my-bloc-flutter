@@ -5,6 +5,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/routes/routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,9 +27,13 @@ class HomePage extends StatelessWidget {
                   height: AppDimension.size_3,
                 ),
                 CardComponent(
-                  func: () {},
                   title: 'Contador',
                   color: AppColors.blue800,
+                  func: () => _goToPage(
+                    context,
+                    AppColors.blue800,
+                    Routes.counterHome,
+                  ),
                 ),
               ],
             ),
@@ -38,7 +43,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  goToPage(BuildContext context, Color color, String route) =>
+  _goToPage(BuildContext context, Color color, String route) =>
       Navigator.of(context).pushNamed(route, arguments: color);
 
   Widget _buildTitle() {
