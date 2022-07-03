@@ -16,7 +16,7 @@ class UserBloc extends Bloc<UserState> {
 
   void getUsers() async {
     emit(UserLoading());
-    await Future.delayed(const Duration(milliseconds: 2000));
+    await Future.delayed(const Duration(milliseconds: 800));
 
     _users = _userRepository.getUsers();
 
@@ -28,7 +28,10 @@ class UserBloc extends Bloc<UserState> {
     emit(UserSuccess(user: _users));
   }
 
-  void addUsers(UserModel user) {
+  void addUsers(UserModel user) async {
+    emit(UserLoading());
+    await Future.delayed(const Duration(milliseconds: 800));
+
     _users = _userRepository.addUsers(user);
     emit(UserSuccess(user: _users));
   }

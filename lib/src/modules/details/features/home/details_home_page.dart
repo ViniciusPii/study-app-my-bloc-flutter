@@ -9,7 +9,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/modules/details/home/bloc/result_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/details/features/home/bloc/result_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/details/models/details_args_model.dart';
 import 'package:superapp_my_bloc/src/routes/routes.dart';
 import 'package:validatorless/validatorless.dart';
@@ -58,60 +58,64 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             const SizedBox(
               height: AppDimension.size_5,
             ),
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  InputComponent(
-                    label: 'Primeiro',
-                    controller: _firstNumberEC,
-                    validator: Validatorless.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_2,
-                  ),
-                  InputComponent(
-                    label: 'Segundo',
-                    controller: _secondNumberEC,
-                    validator: Validatorless.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_3,
-                  ),
-                  BlocConsumer<ResultBloc, ResultState>(
-                    bloc: bloc,
-                    listener: (context, state) {
-                      if (state is ResultSuccess) {
-                        Navigator.of(context).pushNamed(
-                          Routes.detailsResult,
-                          arguments: DetailsArgsModel(result: state.result, color: color),
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      return LoaderComponent(
-                        color: color,
-                        loading: state is ResultLoading,
-                        child: ButtonComponent(
-                          color: color,
-                          child: const Text('Calcular'),
-                          func: () {
-                            if (_formKey.currentState!.validate()) {
-                              bloc.calculate(
-                                int.parse(_firstNumberEC.text),
-                                int.parse(_secondNumberEC.text),
-                              );
-                            }
-                          },
-                        ),
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
+            _buildForm(color),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildForm(Color color) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          InputComponent(
+            label: 'Primeiro',
+            controller: _firstNumberEC,
+            validator: Validatorless.required('Obrigatório'),
+          ),
+          const SizedBox(
+            height: AppDimension.size_2,
+          ),
+          InputComponent(
+            label: 'Segundo',
+            controller: _secondNumberEC,
+            validator: Validatorless.required('Obrigatório'),
+          ),
+          const SizedBox(
+            height: AppDimension.size_3,
+          ),
+          BlocConsumer<ResultBloc, ResultState>(
+            bloc: bloc,
+            listener: (context, state) {
+              if (state is ResultSuccess) {
+                Navigator.of(context).pushNamed(
+                  Routes.detailsResult,
+                  arguments: DetailsArgsModel(result: state.result, color: color),
+                );
+              }
+            },
+            builder: (context, state) {
+              return LoaderComponent(
+                color: color,
+                loading: state is ResultLoading,
+                child: ButtonComponent(
+                  color: color,
+                  child: const Text('Calcular'),
+                  func: () {
+                    if (_formKey.currentState!.validate()) {
+                      bloc.calculate(
+                        int.parse(_firstNumberEC.text),
+                        int.parse(_secondNumberEC.text),
+                      );
+                    }
+                  },
+                ),
+              );
+            },
+          )
+        ],
       ),
     );
   }
