@@ -59,6 +59,15 @@ class HomePage extends StatelessWidget {
             Routes.imcHome,
           ),
         ),
+        CardComponent(
+          title: 'Detalhes',
+          color: AppColors.purpleRed700,
+          func: () => _goToPage(
+            context,
+            AppColors.purpleRed700,
+            Routes.detailsHome,
+          ),
+        ),
       ],
     );
   }
