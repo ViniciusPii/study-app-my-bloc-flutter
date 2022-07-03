@@ -77,6 +77,15 @@ class HomePage extends StatelessWidget {
             Routes.listUser,
           ),
         ),
+        CardComponent(
+          title: 'CEP por API',
+          color: AppColors.red600,
+          func: () => _goToPage(
+            context,
+            AppColors.red600,
+            Routes.cepHome,
+          ),
+        ),
       ],
     );
   }

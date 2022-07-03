@@ -1,4 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/features/home/bloc/address_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/repositories/address/address_repository.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/repositories/address/address_repository_impl.dart';
 import 'package:superapp_my_bloc/src/modules/counter/feature/bloc/counter_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/bloc/user_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud/repositories/user/user_repository.dart';
@@ -9,12 +13,17 @@ import 'package:superapp_my_bloc/src/modules/imc/features/bloc/imc_bloc.dart';
 injection() {
   final di = Dependon.instance;
 
+  //services
+  di.registerLazySingleton(() => Dio());
+
   //repositories
   di.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
+  di.registerLazySingleton<AddressRepository>(() => AddressRepositoryImpl(dio: get()));
 
   //controllers
   di.registerFactory(() => ImcBloc());
   di.registerFactory(() => ResultBloc());
   di.registerFactory(() => CounterBloc());
   di.registerFactory(() => UserBloc(userRepository: get()));
+  di.registerFactory(() => AddressBloc(addressRepository: get()));
 }
