@@ -10,6 +10,8 @@ import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/bloc/address_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/models/address_args_model.dart';
+import 'package:superapp_my_bloc/src/routes/routes.dart';
 import 'package:validatorless/validatorless.dart';
 
 class CepHomePage extends StatefulWidget {
@@ -60,12 +62,6 @@ class _CepHomePageState extends State<CepHomePage> {
               const SizedBox(
                 height: AppDimension.size_3,
               ),
-              BlocConsumer<AddressBloc, AddressState>(
-                bloc: bloc,
-                builder: (context, state) {
-                  return Text(state.address.street);
-                },
-              )
             ],
           ),
         ),
@@ -88,6 +84,27 @@ class _CepHomePageState extends State<CepHomePage> {
           ),
           BlocConsumer<AddressBloc, AddressState>(
             bloc: bloc,
+            listener: (context, state) {
+              if (state is AddressSuccess) {
+                Navigator.of(context)
+                    .pushNamed(
+                      Routes.cepDetails,
+                      arguments: AddressArgsModel(
+                        color: color,
+                        address: state.address,
+                      ),
+                    )
+                    .whenComplete(() => _cepEC.clear());
+              }
+
+              if (state is AddressError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                  ),
+                );
+              }
+            },
             builder: (context, state) {
               return LoaderComponent(
                 color: color,
@@ -96,10 +113,11 @@ class _CepHomePageState extends State<CepHomePage> {
                   color: color,
                   child: const Text('Buscar'),
                   func: () {
-                    bloc.getAddress(
-                      int.parse(_cepEC.text),
-                    );
-                    // if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      bloc.getAddress(
+                        int.parse(_cepEC.text),
+                      );
+                    }
                   },
                 ),
               );

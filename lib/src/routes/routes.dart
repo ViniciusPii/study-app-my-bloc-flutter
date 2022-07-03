@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/features/address_details/address_details_page.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/cep_home_page.dart';
 import 'package:superapp_my_bloc/src/modules/counter/feature/counter_home_page.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/form/form_user_page.dart';
@@ -22,6 +23,7 @@ class Routes {
   static String formUser = '/form';
 
   static String cepHome = '/cep';
+  static String cepDetails = '/cep/details';
 
   final Map<String, WidgetBuilder> routes = {
     home: (context) => const HomePage(),
@@ -42,5 +44,6 @@ class Routes {
 
     //cep
     cepHome: (context) => const CepHomePage(),
+    cepDetails: (context) => const AddressDetailsPage(),
   };
 }

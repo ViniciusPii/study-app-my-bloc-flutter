@@ -14,7 +14,11 @@ class AddressBloc extends Bloc<AddressState> {
 
   void getAddress(int cep) async {
     emit(AddressLoading());
-    final address = await _addressRepository.getAddress(cep);
-    emit(AddressSuccess(address: address));
+    try {
+      final address = await _addressRepository.getAddress(cep);
+      emit(AddressSuccess(address: address));
+    } on Exception {
+      emit(AddressError(message: 'Erro ao buscar CEP!'));
+    }
   }
 }
