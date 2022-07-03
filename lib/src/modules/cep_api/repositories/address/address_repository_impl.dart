@@ -12,8 +12,8 @@ class AddressRepositoryImpl implements AddressRepository {
   final Dio _dio;
 
   @override
-  Future<AddressModel> getAddress() async {
-    final response = await _dio.get('https://viacep.com.br/ws/01001000/json/');
+  Future<AddressModel> getAddress(int cep) async {
+    final response = await _dio.get('https://viacep.com.br/ws/$cep/json/');
     final address = AddressModel.fromMap(response.data);
     return address;
   }

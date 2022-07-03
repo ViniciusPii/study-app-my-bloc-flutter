@@ -12,9 +12,9 @@ class AddressBloc extends Bloc<AddressState> {
 
   final AddressRepository _addressRepository;
 
-  void getAddress() async {
+  void getAddress(int cep) async {
     emit(AddressLoading());
-    final address = await _addressRepository.getAddress();
+    final address = await _addressRepository.getAddress(cep);
     emit(AddressSuccess(address: address));
   }
 }

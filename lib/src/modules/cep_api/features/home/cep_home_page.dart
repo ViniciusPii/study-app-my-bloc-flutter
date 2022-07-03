@@ -96,7 +96,9 @@ class _CepHomePageState extends State<CepHomePage> {
                   color: color,
                   child: const Text('Buscar'),
                   func: () {
-                    bloc.getAddress();
+                    bloc.getAddress(
+                      int.parse(_cepEC.text),
+                    );
                     // if (_formKey.currentState!.validate()) {}
                   },
                 ),
