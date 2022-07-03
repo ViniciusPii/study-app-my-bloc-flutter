@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:superapp_my_bloc/src/modules/home/home_page.dart';
 
 class Routes {
-  final Map<String, WidgetBuilder> routes = {};
+  static String home = '/';
+
+  final Map<String, WidgetBuilder> routes = {
+    home: (context) => const HomePage(),
+  };
 }
