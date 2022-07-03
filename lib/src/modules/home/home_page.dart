@@ -68,6 +68,15 @@ class HomePage extends StatelessWidget {
             Routes.detailsHome,
           ),
         ),
+        CardComponent(
+          title: 'CRUD sem BD',
+          color: AppColors.red700,
+          func: () => _goToPage(
+            context,
+            AppColors.red700,
+            Routes.listUser,
+          ),
+        ),
       ],
     );
   }
