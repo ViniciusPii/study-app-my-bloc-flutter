@@ -24,6 +24,12 @@ class _CounterHomePageState extends State<CounterHomePage> {
   }
 
   @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final color = Utils.getColorArgs(context);
 

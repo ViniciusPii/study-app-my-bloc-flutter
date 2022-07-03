@@ -26,15 +26,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: AppDimension.size_3,
                 ),
-                CardComponent(
-                  title: 'Contador',
-                  color: AppColors.blue800,
-                  func: () => _goToPage(
-                    context,
-                    AppColors.blue800,
-                    Routes.counterHome,
-                  ),
-                ),
+                _buildCards(context),
               ],
             ),
           ),
@@ -45,6 +37,31 @@ class HomePage extends StatelessWidget {
 
   _goToPage(BuildContext context, Color color, String route) =>
       Navigator.of(context).pushNamed(route, arguments: color);
+
+  Widget _buildCards(BuildContext context) {
+    return Column(
+      children: [
+        CardComponent(
+          title: 'Contador',
+          color: AppColors.blue800,
+          func: () => _goToPage(
+            context,
+            AppColors.blue800,
+            Routes.counterHome,
+          ),
+        ),
+        CardComponent(
+          title: 'IMC',
+          color: AppColors.purple700,
+          func: () => _goToPage(
+            context,
+            AppColors.purple700,
+            Routes.imcHome,
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _buildTitle() {
     return Column(
