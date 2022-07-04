@@ -77,7 +77,6 @@ class _ListUserPageState extends State<ListUserPage> {
           return Expanded(
             child: ThreeBounceComponent(
               color: color,
-              size: AppDimension.size_4,
             ),
           );
         }

@@ -22,9 +22,12 @@ class LoaderComponent extends StatelessWidget {
     return Visibility(
       visible: loading,
       replacement: child,
-      child: ThreeBounceComponent(
-        color: color,
-        size: size ?? AppDimension.size_4,
+      child: SizedBox(
+        height: AppDimension.size_6,
+        child: ThreeBounceComponent(
+          color: color,
+          size: size ?? AppDimension.size_4,
+        ),
       ),
     );
   }

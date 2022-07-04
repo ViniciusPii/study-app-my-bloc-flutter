@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'dart:math' as math show sin, pi;
 
+import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+
 class DelayTween extends Tween<double> {
   DelayTween({double? begin, double? end, required this.delay}) : super(begin: begin, end: end);
 
@@ -18,7 +20,7 @@ class ThreeBounceComponent extends StatefulWidget {
   const ThreeBounceComponent({
     Key? key,
     this.color,
-    this.size = 50.0,
+    this.size = AppDimension.size_4,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 1400),
     this.controller,

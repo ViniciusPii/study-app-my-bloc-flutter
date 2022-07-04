@@ -67,7 +67,6 @@ class _CounterHomePageState extends State<CounterHomePage> {
       builder: (context, state) {
         return LoaderComponent(
           color: color,
-          size: AppDimension.size_6,
           loading: state is CounterLoading,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
