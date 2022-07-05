@@ -2,34 +2,45 @@ import 'dart:convert';
 
 class ContactModel {
   ContactModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.email,
+    required this.timestamp,
   });
 
-  final String id;
+  final String? id;
   final String name;
   final String email;
+  final DateTime timestamp;
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
-    result.addAll({'id': id});
+    if (id != null) {
+      result.addAll({'id': id});
+    }
     result.addAll({'name': name});
     result.addAll({'email': email});
+    result.addAll({'timestamp': timestamp.millisecondsSinceEpoch});
 
     return result;
   }
 
   factory ContactModel.fromMap(Map<String, dynamic> map) {
     return ContactModel(
-      id: map['id'] ?? '',
+      id: map['id'],
       name: map['name'] ?? '',
       email: map['email'] ?? '',
+      timestamp: DateTime.fromMillisecondsSinceEpoch(map['timestamp']),
     );
   }
 
-  static ContactModel get contactEmpty => ContactModel(id: '', name: '', email: '');
+  static ContactModel get contactEmpty => ContactModel(
+        id: '',
+        name: '',
+        email: '',
+        timestamp: DateTime.now(),
+      );
 
   String toJson() => json.encode(toMap());
 

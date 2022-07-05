@@ -32,6 +32,14 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
   }
 
   @override
+  void dispose() {
+    bloc.dispose();
+    _nameEC.dispose();
+    _emailEC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final color = Utils.getColorArgs(context);
 
@@ -91,9 +99,9 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
                     if (_formKey.currentState!.validate()) {
                       bloc.addContact(
                         ContactModel(
-                          id: UniqueKey().toString(),
                           name: _nameEC.text,
                           email: _emailEC.text,
+                          timestamp: DateTime.now(),
                         ),
                       );
                     }

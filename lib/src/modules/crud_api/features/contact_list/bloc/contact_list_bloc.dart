@@ -16,11 +16,20 @@ class ContactListBloc extends Bloc<ContactListState> {
     emit(ContactListLoading());
     await Future.delayed(const Duration(milliseconds: 800));
     final contacts = await _contactRepository.getContacts();
+    _orderByList(contacts);
     emit(ContactListSuccess(contacts: contacts));
   }
 
   void removeContact(ContactModel contact) async {
     await _contactRepository.removeContact(contact);
     getContacts();
+  }
+
+  void _orderByList(List<ContactModel> contacts) {
+    return contacts.sort(
+      (contactFirst, contactLast) => contactLast.timestamp.compareTo(
+        contactFirst.timestamp,
+      ),
+    );
   }
 }
