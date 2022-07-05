@@ -23,4 +23,8 @@ class ContactRepositoryImpl implements ContactRepository {
 
   @override
   Future<void> addContact(ContactModel contact) => _dio.post(_baseUrl, data: contact.toMap());
+
+  @override
+  Future<void> updateContact(ContactModel contact) =>
+      _dio.put('$_baseUrl/${contact.id}', data: contact.toMap());
 }

@@ -8,6 +8,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/bloc/contact_list_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.dart';
 import 'package:superapp_my_bloc/src/routes/routes.dart';
 
 class ContactListPage extends StatefulWidget {
@@ -101,7 +102,17 @@ class _ContactListPageState extends State<ContactListPage> {
             return PeopleCardComponent(
               title: contact.name,
               subtitle: contact.email,
-              leftFunc: () {},
+              leftFunc: () async {
+                await Navigator.of(context).pushNamed(
+                  Routes.contactUpdate,
+                  arguments: ContactArgsModel(
+                    color: color,
+                    contact: contact,
+                  ),
+                );
+
+                bloc.getContacts();
+              },
               rightFunc: () => bloc.removeContact(contact),
             );
           }),
