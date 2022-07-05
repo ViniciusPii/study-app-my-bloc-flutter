@@ -8,6 +8,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/bloc/contact_list_bloc.dart';
+import 'package:superapp_my_bloc/src/routes/routes.dart';
 
 class ContactListPage extends StatefulWidget {
   const ContactListPage({Key? key}) : super(key: key);
@@ -47,6 +48,17 @@ class _ContactListPageState extends State<ContactListPage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.of(context).pushNamed(
+            Routes.contactRegister,
+            arguments: color,
+          );
+
+          bloc.getContacts();
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
@@ -64,11 +76,13 @@ class _ContactListPageState extends State<ContactListPage> {
           );
         }
 
-        if (state is ContactListLoading || state is ContactListInitial) {
+        if (contacts.isEmpty) {
           return Expanded(
-            child: Text(
-              'Nenhum contato cadastrado',
-              style: AppFonts.titleLarge(),
+            child: Center(
+              child: Text(
+                'Nenhum contato cadastrado',
+                style: AppFonts.titleLarge(),
+              ),
             ),
           );
         }
@@ -82,7 +96,7 @@ class _ContactListPageState extends State<ContactListPage> {
               title: contact.name,
               subtitle: contact.email,
               leftFunc: () {},
-              rightFunc: () {},
+              rightFunc: () => bloc.removeContact(contact),
             );
           }),
           itemCount: contacts.length,

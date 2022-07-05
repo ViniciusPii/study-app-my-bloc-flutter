@@ -17,4 +17,10 @@ class ContactRepositoryImpl implements ContactRepository {
     final response = await _dio.get(_baseUrl);
     return response.data.map<ContactModel>((contact) => ContactModel.fromMap(contact)).toList();
   }
+
+  @override
+  Future<void> removeContact(ContactModel contact) => _dio.delete('$_baseUrl/${contact.id}');
+
+  @override
+  Future<void> addContact(ContactModel contact) => _dio.post(_baseUrl, data: contact.toMap());
 }

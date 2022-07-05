@@ -2,25 +2,20 @@ import 'package:superapp_my_bloc/src/core/bloc/bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/repositories/contact/contact_repository.dart';
 
-part 'contact_list_state.dart';
+part 'contact_register_state.dart';
 
-class ContactListBloc extends Bloc<ContactListState> {
-  ContactListBloc({
+class ContactRegisterBloc extends Bloc<ContactRegisterState> {
+  ContactRegisterBloc({
     required ContactRepository contactRepository,
   })  : _contactRepository = contactRepository,
-        super(ContactListInitial());
+        super(ContactRegisterInitial());
 
   final ContactRepository _contactRepository;
 
-  void getContacts() async {
-    emit(ContactListLoading());
+  void addContact(ContactModel contact) async {
+    emit(ContactRegisterLoading());
     await Future.delayed(const Duration(milliseconds: 800));
-    final contacts = await _contactRepository.getContacts();
-    emit(ContactListSuccess(contacts: contacts));
-  }
-
-  void removeContact(ContactModel contact) async {
-    await _contactRepository.removeContact(contact);
-    getContacts();
+    await _contactRepository.addContact(contact);
+    emit(ContactRegisterSuccess(contact: contact));
   }
 }

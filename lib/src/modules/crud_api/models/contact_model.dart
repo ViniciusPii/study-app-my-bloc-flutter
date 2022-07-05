@@ -29,6 +29,8 @@ class ContactModel {
     );
   }
 
+  static ContactModel get contactEmpty => ContactModel(id: '', name: '', email: '');
+
   String toJson() => json.encode(toMap());
 
   factory ContactModel.fromJson(String source) => ContactModel.fromMap(json.decode(source));
