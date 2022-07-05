@@ -4,6 +4,7 @@ import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/people_card_component.dart';
 import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
+import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
@@ -79,6 +80,19 @@ class _ContactListPageState extends State<ContactListPage> {
           return Expanded(
             child: ThreeBounceComponent(
               color: color,
+            ),
+          );
+        }
+
+        if (state is ContactListError) {
+          return Expanded(
+            child: Center(
+              child: Text(
+                state.message,
+                style: AppFonts.titleLarge(
+                  color: AppColors.red,
+                ),
+              ),
             ),
           );
         }

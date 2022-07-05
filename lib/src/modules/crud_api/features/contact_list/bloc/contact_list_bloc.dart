@@ -15,9 +15,14 @@ class ContactListBloc extends Bloc<ContactListState> {
   void getContacts() async {
     emit(ContactListLoading());
     await Future.delayed(const Duration(milliseconds: 800));
-    final contacts = await _contactRepository.getContacts();
-    _orderByList(contacts);
-    emit(ContactListSuccess(contacts: contacts));
+
+    try {
+      final contacts = await _contactRepository.getContacts();
+      _orderByList(contacts);
+      emit(ContactListSuccess(contacts: contacts));
+    } on Exception {
+      emit(ContactListError(message: 'Erro ao carregar a lista'));
+    }
   }
 
   void removeContact(ContactModel contact) async {
