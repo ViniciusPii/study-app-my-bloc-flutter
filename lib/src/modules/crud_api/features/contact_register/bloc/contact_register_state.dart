@@ -1,31 +1,25 @@
 part of 'contact_register_bloc.dart';
 
 abstract class ContactRegisterState {
-  ContactRegisterState({
-    required this.contact,
-  });
-
-  final ContactModel contact;
+  ContactRegisterState();
 }
 
 class ContactRegisterInitial extends ContactRegisterState {
-  ContactRegisterInitial() : super(contact: ContactModel.contactEmpty);
+  ContactRegisterInitial() : super();
 }
 
 class ContactRegisterLoading extends ContactRegisterState {
-  ContactRegisterLoading() : super(contact: ContactModel.contactEmpty);
+  ContactRegisterLoading() : super();
 }
 
 class ContactRegisterSuccess extends ContactRegisterState {
-  ContactRegisterSuccess({
-    required ContactModel contact,
-  }) : super(contact: ContactModel.contactEmpty);
+  ContactRegisterSuccess() : super();
 }
 
 class ContactRegisterError extends ContactRegisterState {
   ContactRegisterError({
     required this.message,
-  }) : super(contact: ContactModel.contactEmpty);
+  }) : super();
 
   final String message;
 }

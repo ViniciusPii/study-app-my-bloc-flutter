@@ -35,13 +35,6 @@ class ContactModel {
     );
   }
 
-  static ContactModel get contactEmpty => ContactModel(
-        id: '',
-        name: '',
-        email: '',
-        timestamp: DateTime.now(),
-      );
-
   String toJson() => json.encode(toMap());
 
   factory ContactModel.fromJson(String source) => ContactModel.fromMap(json.decode(source));

@@ -16,6 +16,6 @@ class ContactRegisterBloc extends Bloc<ContactRegisterState> {
     emit(ContactRegisterLoading());
     await Future.delayed(const Duration(milliseconds: 800));
     await _contactRepository.addContact(contact);
-    emit(ContactRegisterSuccess(contact: contact));
+    emit(ContactRegisterSuccess());
   }
 }
