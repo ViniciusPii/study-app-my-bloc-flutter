@@ -1,0 +1,19 @@
+{
+    "contacts": [
+        {
+            "id": "uhsdhifdofedopfdkjf",
+            "name": "Fulano",
+            "email": "fulano@crud.com"
+        },
+        {
+            "id": "sdjifjfhuaeijdaw",
+            "name": "Ciclano",
+            "email": "ciclano@crud.com"
+        },
+        {
+            "id": "dfompadopjfdasdnk",
+            "name": "Beltrano",
+            "email": "beltrano@crud.com"
+        }
+    ]
+}

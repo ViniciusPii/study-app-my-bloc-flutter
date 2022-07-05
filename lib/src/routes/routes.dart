@@ -4,6 +4,7 @@ import 'package:superapp_my_bloc/src/modules/cep_api/features/home/cep_home_page
 import 'package:superapp_my_bloc/src/modules/counter/feature/counter_home_page.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/form/form_user_page.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/home/list_user_page.dart';
+import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/contact_list_page.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/details/details_result_page.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/home/details_home_page.dart';
 import 'package:superapp_my_bloc/src/modules/home/home_page.dart';
@@ -25,6 +26,8 @@ class Routes {
   static String cepHome = '/cep';
   static String cepDetails = '/cep/details';
 
+  static String contactHome = '/contact';
+
   final Map<String, WidgetBuilder> routes = {
     home: (context) => const HomePage(),
 
@@ -45,5 +48,8 @@ class Routes {
     //cep
     cepHome: (context) => const CepHomePage(),
     cepDetails: (context) => const AddressDetailsPage(),
+
+    //crud api
+    contactHome: (context) => const ContactListPage(),
   };
 }

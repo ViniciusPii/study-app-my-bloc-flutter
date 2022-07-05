@@ -20,14 +20,16 @@ class HomePage extends StatelessWidget {
               vertical: AppDimension.size_4,
               horizontal: AppDimension.size_3,
             ),
-            child: Column(
-              children: [
-                _buildTitle(),
-                const SizedBox(
-                  height: AppDimension.size_3,
-                ),
-                _buildCards(context),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildTitle(),
+                  const SizedBox(
+                    height: AppDimension.size_3,
+                  ),
+                  _buildCards(context),
+                ],
+              ),
             ),
           ),
         ),
@@ -84,6 +86,15 @@ class HomePage extends StatelessWidget {
             context,
             AppColors.red600,
             Routes.cepHome,
+          ),
+        ),
+        CardComponent(
+          title: 'CRUD com API',
+          color: AppColors.orange,
+          func: () => _goToPage(
+            context,
+            AppColors.orange,
+            Routes.contactHome,
           ),
         ),
       ],
