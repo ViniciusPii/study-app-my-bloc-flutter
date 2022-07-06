@@ -1,9 +1,9 @@
-import 'package:superapp_my_bloc/src/modules/imc/features/imc_module.dart';
+import 'package:superapp_my_bloc/src/modules/imc/features/imc_home_route.dart';
 
 class ImcRoutes {
   ImcRoutes._();
 
   static final routes = {
-    ...ImcModule.module.route,
+    ...ImcHomeRoute.route.buildRoute,
   };
 }

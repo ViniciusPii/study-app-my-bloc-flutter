@@ -9,6 +9,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/modules/details/features/details/details_result_route.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/home/bloc/result_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/details/models/details_args_model.dart';
 import 'package:validatorless/validatorless.dart';
@@ -90,7 +91,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             listener: (context, state) {
               if (state is ResultSuccess) {
                 Navigator.of(context).pushNamed(
-                  'details/result',
+                  DetailsResultRoute.route.name,
                   arguments: DetailsArgsModel(result: state.result, color: color),
                 );
               }

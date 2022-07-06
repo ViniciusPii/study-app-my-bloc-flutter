@@ -7,6 +7,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/bloc/user_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud/feature/form/form_user_route.dart';
 
 class ListUserPage extends StatefulWidget {
   const ListUserPage({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class _ListUserPageState extends State<ListUserPage> {
         onPressed: () {
           Navigator.of(context)
               .pushNamed(
-                'crud/form',
+                FormUserRoute.route.name,
                 arguments: color,
               )
               .whenComplete(() => bloc.getUsers());

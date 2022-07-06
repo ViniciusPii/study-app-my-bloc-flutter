@@ -1,11 +1,11 @@
 import 'package:superapp_my_bloc/src/core/module/app_module.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/cep_home_page.dart';
 
-class CepModule {
-  CepModule._();
+class CepHomeRoute {
+  CepHomeRoute._();
 
-  static final module = AppModule(
-    routeName: 'cep',
+  static final route = AppRoute(
+    name: 'cep',
     page: (_) => const CepHomePage(),
   );
 }

@@ -5,7 +5,12 @@ import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
-import 'package:superapp_my_bloc/src/routes/routes.dart';
+import 'package:superapp_my_bloc/src/modules/cep_api/features/home/cep_home_route.dart';
+import 'package:superapp_my_bloc/src/modules/counter/feature/counter_home_route.dart';
+import 'package:superapp_my_bloc/src/modules/crud/feature/home/list_user_route.dart';
+import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/contact_list_route.dart';
+import 'package:superapp_my_bloc/src/modules/details/features/home/detials_home_route.dart';
+import 'package:superapp_my_bloc/src/modules/imc/features/imc_home_route.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,7 +54,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.blue800,
-            '/counter',
+            CounterHomeRoute.route.name,
           ),
         ),
         CardComponent(
@@ -58,7 +63,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.purple700,
-            Routes.imcHome,
+            ImcHomeRoute.route.name,
           ),
         ),
         CardComponent(
@@ -67,7 +72,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.purpleRed700,
-            '/details',
+            DetialsHomeRoute.route.name,
           ),
         ),
         CardComponent(
@@ -76,7 +81,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.red700,
-            'crud/list',
+            ListUserRoute.route.name,
           ),
         ),
         CardComponent(
@@ -85,7 +90,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.red600,
-            'cep',
+            CepHomeRoute.route.name,
           ),
         ),
         CardComponent(
@@ -94,7 +99,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.orange,
-            'contact/list',
+            ContactListRoute.route.name,
           ),
         ),
       ],
