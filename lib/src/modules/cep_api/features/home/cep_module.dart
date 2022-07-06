@@ -6,6 +6,6 @@ class CepModule {
 
   static final module = AppModule(
     routeName: 'cep',
-    page: const CepHomePage(),
+    page: (_) => const CepHomePage(),
   );
 }

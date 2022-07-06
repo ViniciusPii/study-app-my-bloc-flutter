@@ -6,6 +6,6 @@ class FormModule {
 
   static final module = AppModule(
     routeName: 'crud/form',
-    page: const FormUserPage(),
+    page: (_) => const FormUserPage(),
   );
 }

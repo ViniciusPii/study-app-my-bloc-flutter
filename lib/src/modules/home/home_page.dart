@@ -94,7 +94,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.orange,
-            Routes.contactHome,
+            'contact/list',
           ),
         ),
       ],

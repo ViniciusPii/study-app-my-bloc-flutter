@@ -6,6 +6,6 @@ class ListUserModule {
 
   static final module = AppModule(
     routeName: 'crud/list',
-    page: const ListUserPage(),
+    page: (_) => const ListUserPage(),
   );
 }

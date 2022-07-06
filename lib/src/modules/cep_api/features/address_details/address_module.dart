@@ -6,6 +6,6 @@ class AddressModule {
 
   static final module = AppModule(
     routeName: 'cep/details',
-    page: const AddressDetailsPage(),
+    page: (_) => const AddressDetailsPage(),
   );
 }

@@ -10,7 +10,6 @@ import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/bloc/contact_list_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.dart';
-import 'package:superapp_my_bloc/src/routes/routes.dart';
 
 class ContactListPage extends StatefulWidget {
   const ContactListPage({Key? key}) : super(key: key);
@@ -59,7 +58,7 @@ class _ContactListPageState extends State<ContactListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.of(context).pushNamed(
-            Routes.contactRegister,
+            'contact/register',
             arguments: color,
           );
 
@@ -118,7 +117,7 @@ class _ContactListPageState extends State<ContactListPage> {
               subtitle: contact.email,
               leftFunc: () async {
                 await Navigator.of(context).pushNamed(
-                  Routes.contactUpdate,
+                  'contact/update',
                   arguments: ContactArgsModel(
                     color: color,
                     contact: contact,
