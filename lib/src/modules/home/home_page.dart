@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.purpleRed700,
-            Routes.detailsHome,
+            '/details',
           ),
         ),
         CardComponent(
