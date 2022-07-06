@@ -5,6 +5,7 @@ class DetailsInjection {
   DetailsInjection._();
 
   static injection() {
+    //controllers
     di.registerFactory(() => ResultBloc());
   }
 }

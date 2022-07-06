@@ -8,8 +8,10 @@ class CrudInjections {
   CrudInjections._();
 
   static injection() {
+    //repositories
     di.registerLazySingleton<UserRepository>(() => UserRepositoryImpl());
 
+    //controllers
     di.registerFactory(() => UserBloc(userRepository: get()));
   }
 }

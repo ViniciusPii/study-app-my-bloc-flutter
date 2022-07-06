@@ -5,6 +5,7 @@ class CounterInjection {
   CounterInjection._();
 
   static injection() {
+    //controllers
     di.registerFactory(() => CounterBloc());
   }
 }

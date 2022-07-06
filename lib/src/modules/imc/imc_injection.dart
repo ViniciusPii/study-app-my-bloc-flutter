@@ -5,6 +5,7 @@ class ImcInjection {
   ImcInjection._();
 
   static injection() {
+    //controllers
     di.registerFactory(() => ImcBloc());
   }
 }
