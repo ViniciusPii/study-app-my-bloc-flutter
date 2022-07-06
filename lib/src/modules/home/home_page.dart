@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.blue800,
-            Routes.counterHome,
+            '/counter',
           ),
         ),
         CardComponent(
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.red700,
-            Routes.listUser,
+            'crud/list',
           ),
         ),
         CardComponent(
@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
           func: () => _goToPage(
             context,
             AppColors.red600,
-            Routes.cepHome,
+            'cep',
           ),
         ),
         CardComponent(

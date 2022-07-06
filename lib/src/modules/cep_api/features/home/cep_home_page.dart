@@ -11,7 +11,6 @@ import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/bloc/address_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/models/address_args_model.dart';
-import 'package:superapp_my_bloc/src/routes/routes.dart';
 import 'package:validatorless/validatorless.dart';
 
 class CepHomePage extends StatefulWidget {
@@ -88,7 +87,7 @@ class _CepHomePageState extends State<CepHomePage> {
               if (state is AddressSuccess) {
                 Navigator.of(context)
                     .pushNamed(
-                      Routes.cepDetails,
+                      'cep/details',
                       arguments: AddressArgsModel(
                         color: color,
                         address: state.address,
