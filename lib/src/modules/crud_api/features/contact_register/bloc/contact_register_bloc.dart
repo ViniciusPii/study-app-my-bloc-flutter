@@ -15,7 +15,11 @@ class ContactRegisterBloc extends Bloc<ContactRegisterState> {
   void addContact(ContactModel contact) async {
     emit(ContactRegisterLoading());
     await Future.delayed(const Duration(milliseconds: 800));
-    await _contactRepository.addContact(contact);
-    emit(ContactRegisterSuccess());
+    try {
+      await _contactRepository.addContact(contact);
+      emit(ContactRegisterSuccess());
+    } on Exception {
+      emit(ContactRegisterError(message: 'Erro ao cadastrar contato!'));
+    }
   }
 }

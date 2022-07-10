@@ -87,6 +87,16 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
               if (state is ContactRegisterSuccess) {
                 Navigator.pop(context);
               }
+
+              if (state is ContactRegisterError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.message,
+                    ),
+                  ),
+                );
+              }
             },
             builder: (context, state) {
               return LoaderComponent(

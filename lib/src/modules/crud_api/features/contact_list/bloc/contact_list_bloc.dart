@@ -26,8 +26,16 @@ class ContactListBloc extends Bloc<ContactListState> {
   }
 
   void removeContact(ContactModel contact) async {
-    await _contactRepository.removeContact(contact);
-    getContacts();
+    try {
+      await _contactRepository.removeContact(contact);
+      getContacts();
+    } on Exception {
+      emit(
+        ContactListError(
+          message: 'Erro ao deletar contato, recarregue a lista e tente novamente mais tarde!',
+        ),
+      );
+    }
   }
 
   void _orderByList(List<ContactModel> contacts) {

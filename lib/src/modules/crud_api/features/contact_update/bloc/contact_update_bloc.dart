@@ -15,7 +15,11 @@ class ContactUpdateBloc extends Bloc<ContactUpdateState> {
   void updateContact(ContactModel contact) async {
     emit(ContactUpdateLoading());
     await Future.delayed(const Duration(milliseconds: 800));
-    await _contactRepository.updateContact(contact);
-    emit(ContactUpdateSuccess());
+    try {
+      await _contactRepository.updateContact(contact);
+      emit(ContactUpdateSuccess());
+    } on Exception {
+      emit(ContactUpdateError(message: 'Erro ao atualizar o contato!'));
+    }
   }
 }

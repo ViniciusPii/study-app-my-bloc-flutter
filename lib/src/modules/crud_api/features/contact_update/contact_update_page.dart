@@ -95,6 +95,16 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
               if (state is ContactUpdateSuccess) {
                 Navigator.pop(context);
               }
+
+              if (state is ContactUpdateError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      state.message,
+                    ),
+                  ),
+                );
+              }
             },
             builder: (context, state) {
               return LoaderComponent(

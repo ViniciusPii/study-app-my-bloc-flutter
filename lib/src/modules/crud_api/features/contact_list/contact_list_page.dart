@@ -43,6 +43,14 @@ class _ContactListPageState extends State<ContactListPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color,
+        actions: [
+          IconButton(
+            onPressed: () => bloc.getContacts(),
+            icon: const Icon(
+              Icons.refresh,
+            ),
+          ),
+        ],
         title: const Text('Home'),
       ),
       body: BaseViewComponent(
@@ -93,6 +101,7 @@ class _ContactListPageState extends State<ContactListPage> {
                 style: AppFonts.titleLarge(
                   color: AppColors.red,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           );
