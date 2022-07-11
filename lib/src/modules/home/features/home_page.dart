@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/components/card_component.dart';
-import 'package:superapp_my_bloc/src/core/components/status_bar_component.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
@@ -17,24 +16,22 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StatusBarComponent(
-      child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: AppDimension.size_4,
-              horizontal: AppDimension.size_3,
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildTitle(),
-                  const SizedBox(
-                    height: AppDimension.size_3,
-                  ),
-                  _buildCards(context),
-                ],
-              ),
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: AppDimension.size_4,
+            horizontal: AppDimension.size_3,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildTitle(),
+                const SizedBox(
+                  height: AppDimension.size_3,
+                ),
+                _buildCards(context),
+              ],
             ),
           ),
         ),

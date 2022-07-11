@@ -7,9 +7,9 @@ import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.
 class CrudApiRoutes {
   CrudApiRoutes._();
 
-  static const String listContact = 'contact/list';
-  static const String updateContact = 'contact/update';
-  static const String registerContact = 'contact/register';
+  static const String listContact = '/contact/list';
+  static const String updateContact = '/contact/update';
+  static const String registerContact = '/contact/register';
 
   static final routes = {
     listContact: (context) => const ContactListPage(),
