@@ -1,11 +1,15 @@
-import 'package:flutter/material.dart';
-
 import 'dart:math' as math show sin, pi;
+
+import 'package:flutter/material.dart';
 
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 
 class DelayTween extends Tween<double> {
-  DelayTween({double? begin, double? end, required this.delay}) : super(begin: begin, end: end);
+  DelayTween({
+    double? begin,
+    double? end,
+    required this.delay,
+  }) : super(begin: begin, end: end);
 
   final double delay;
 
@@ -19,21 +23,22 @@ class DelayTween extends Tween<double> {
 class ThreeBounceComponent extends StatefulWidget {
   const ThreeBounceComponent({
     Key? key,
-    this.color,
     this.size = AppDimension.size_4,
-    this.itemBuilder,
+    this.color,
     this.duration = const Duration(milliseconds: 1400),
+    this.itemBuilder,
     this.controller,
   })  : assert(
-            !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
-                !(itemBuilder == null && color == null),
-            'You should specify either a itemBuilder or a color'),
+          !(itemBuilder is IndexedWidgetBuilder && color is Color) &&
+              !(itemBuilder == null && color == null),
+          'You should specify either a itemBuilder or a color',
+        ),
         super(key: key);
 
-  final Color? color;
   final double size;
-  final IndexedWidgetBuilder? itemBuilder;
+  final Color? color;
   final Duration duration;
+  final IndexedWidgetBuilder? itemBuilder;
   final AnimationController? controller;
 
   @override
@@ -48,7 +53,11 @@ class ThreeBounceComponentState extends State<ThreeBounceComponent>
   void initState() {
     super.initState();
 
-    _controller = (widget.controller ?? AnimationController(vsync: this, duration: widget.duration))
+    _controller = (widget.controller ??
+        AnimationController(
+          vsync: this,
+          duration: widget.duration,
+        ))
       ..repeat();
   }
 
@@ -70,8 +79,10 @@ class ThreeBounceComponentState extends State<ThreeBounceComponent>
           children: List.generate(3, (i) {
             return ScaleTransition(
               scale: DelayTween(begin: 0.0, end: 1.0, delay: i * .2).animate(_controller),
-              child:
-                  SizedBox.fromSize(size: Size.square(widget.size * 0.5), child: _itemBuilder(i)),
+              child: SizedBox.fromSize(
+                size: Size.square(widget.size * 0.5),
+                child: _itemBuilder(i),
+              ),
             );
           }),
         ),
@@ -80,6 +91,14 @@ class ThreeBounceComponentState extends State<ThreeBounceComponent>
   }
 
   Widget _itemBuilder(int index) => widget.itemBuilder != null
-      ? widget.itemBuilder!(context, index)
-      : DecoratedBox(decoration: BoxDecoration(color: widget.color, shape: BoxShape.circle));
+      ? widget.itemBuilder!(
+          context,
+          index,
+        )
+      : DecoratedBox(
+          decoration: BoxDecoration(
+            color: widget.color,
+            shape: BoxShape.circle,
+          ),
+        );
 }
