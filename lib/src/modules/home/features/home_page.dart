@@ -99,6 +99,11 @@ class HomePage extends StatelessWidget {
             CrudApiRoutes.listContact,
           ),
         ),
+        CardComponent(
+          title: 'CRUD com Firebase | Em breve!',
+          color: AppColors.green700,
+          func: () => {},
+        ),
       ],
     );
   }

@@ -31,10 +31,12 @@ class CardComponent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: AppFonts.titleLarge(
-                  color: Utils.getLuminance(color),
+              Flexible(
+                child: Text(
+                  title,
+                  style: AppFonts.titleLarge(
+                    color: Utils.getLuminance(color),
+                  ),
                 ),
               ),
               Icon(
