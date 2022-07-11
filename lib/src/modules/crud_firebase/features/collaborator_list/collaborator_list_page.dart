@@ -4,6 +4,7 @@ import 'package:superapp_my_bloc/src/core/components/people_card_component.dart'
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/modules/crud_firebase/routes/crud_firebase_routes.dart';
 
 class CollaboratorListPage extends StatefulWidget {
   const CollaboratorListPage({Key? key}) : super(key: key);
@@ -44,6 +45,13 @@ class _CollaboratorListPageState extends State<CollaboratorListPage> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed(
+          CrudFirebaseRoutes.collaboratorsRegister,
+          arguments: color,
+        ),
+        child: const Icon(Icons.add),
       ),
     );
   }
