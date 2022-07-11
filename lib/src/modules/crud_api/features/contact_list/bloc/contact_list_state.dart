@@ -29,3 +29,12 @@ class ContactListError extends ContactListState {
 
   final String message;
 }
+
+class ContactListRemoveError extends ContactListState {
+  ContactListRemoveError({
+    required this.message,
+    required List<ContactModel> contacts,
+  }) : super(contacts: contacts);
+
+  final String message;
+}

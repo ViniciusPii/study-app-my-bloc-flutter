@@ -82,6 +82,15 @@ class _ContactListPageState extends State<ContactListPage> {
   Widget _buildList(Color color) {
     return BlocConsumer<ContactListBloc, ContactListState>(
       bloc: bloc,
+      listener: (context, state) {
+        if (state is ContactListRemoveError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         final contacts = state.contacts;
 
