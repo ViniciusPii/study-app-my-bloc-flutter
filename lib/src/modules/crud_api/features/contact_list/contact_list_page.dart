@@ -9,9 +9,8 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/bloc/contact_list_bloc.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_register/contact_register_route.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_update/contact_update_route.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.dart';
+import 'package:superapp_my_bloc/src/modules/crud_api/routes/crud_api_routes.dart';
 
 class ContactListPage extends StatefulWidget {
   const ContactListPage({Key? key}) : super(key: key);
@@ -68,7 +67,7 @@ class _ContactListPageState extends State<ContactListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.of(context).pushNamed(
-            ContactRegisterRoute.route.name,
+            CrudApiRoutes.registerContact,
             arguments: color,
           );
 
@@ -137,7 +136,7 @@ class _ContactListPageState extends State<ContactListPage> {
               subtitle: contact.email,
               leftFunc: () async {
                 await Navigator.of(context).pushNamed(
-                  ContactUpdateRoute.route.name,
+                  CrudApiRoutes.updateContact,
                   arguments: ContactArgsModel(
                     color: color,
                     contact: contact,

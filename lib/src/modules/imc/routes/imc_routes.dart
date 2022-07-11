@@ -1,9 +1,11 @@
-import 'package:superapp_my_bloc/src/modules/imc/features/imc_home_route.dart';
+import 'package:superapp_my_bloc/src/modules/imc/features/imc_home_page.dart';
 
 class ImcRoutes {
   ImcRoutes._();
 
+  static const String imcHome = '/imc';
+
   static final routes = {
-    ...ImcHomeRoute.route.buildRoute,
+    imcHome: (context) => const ImcHomePage(),
   };
 }

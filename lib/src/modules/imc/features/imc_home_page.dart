@@ -36,7 +36,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
   void dispose() {
     bloc.dispose();
     _heightEC.dispose();
-    _heightEC.dispose();
+    _weightEC.dispose();
     super.dispose();
   }
 

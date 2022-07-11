@@ -9,9 +9,9 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/modules/details/features/details/details_result_route.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/home/bloc/result_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/details/models/details_args_model.dart';
+import 'package:superapp_my_bloc/src/modules/details/routes/details_routes.dart';
 import 'package:validatorless/validatorless.dart';
 
 class DetailsHomePage extends StatefulWidget {
@@ -91,7 +91,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             listener: (context, state) {
               if (state is ResultSuccess) {
                 Navigator.of(context).pushNamed(
-                  DetailsResultRoute.route.name,
+                  DetailsRoutes.detailsResult,
                   arguments: DetailsArgsModel(result: state.result, color: color),
                 );
               }

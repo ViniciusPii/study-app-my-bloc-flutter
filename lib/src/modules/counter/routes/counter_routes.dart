@@ -1,7 +1,11 @@
-import 'package:superapp_my_bloc/src/modules/counter/feature/counter_home_route.dart';
+import 'package:superapp_my_bloc/src/modules/counter/feature/counter_home_page.dart';
 
 class CounterRoutes {
+  CounterRoutes._();
+
+  static const String counterHome = '/counter';
+
   static final routes = {
-    ...CounterHomeRoute.route.buildRoute,
+    counterHome: (context) => const CounterHomePage(),
   };
 }
