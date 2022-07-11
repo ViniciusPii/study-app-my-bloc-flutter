@@ -8,6 +8,7 @@ import 'package:superapp_my_bloc/src/modules/cep_api/routes/cep_routes.dart';
 import 'package:superapp_my_bloc/src/modules/counter/routes/counter_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud/routes/crud_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/routes/crud_api_routes.dart';
+import 'package:superapp_my_bloc/src/modules/crud_firebase/routes/crud_firebase_routes.dart';
 import 'package:superapp_my_bloc/src/modules/details/routes/details_routes.dart';
 import 'package:superapp_my_bloc/src/modules/imc/routes/imc_routes.dart';
 
@@ -46,30 +47,21 @@ class HomePage extends StatelessWidget {
     return Column(
       children: [
         CardComponent(
+          title: 'CEP por API',
+          color: AppColors.red600,
+          func: () => _goToPage(
+            context,
+            AppColors.red600,
+            CepRoutes.cepHome,
+          ),
+        ),
+        CardComponent(
           title: 'Contador',
           color: AppColors.blue800,
           func: () => _goToPage(
             context,
             AppColors.blue800,
             CounterRoutes.counterHome,
-          ),
-        ),
-        CardComponent(
-          title: 'IMC',
-          color: AppColors.purple700,
-          func: () => _goToPage(
-            context,
-            AppColors.purple700,
-            ImcRoutes.imcHome,
-          ),
-        ),
-        CardComponent(
-          title: 'Detalhes',
-          color: AppColors.purpleRed700,
-          func: () => _goToPage(
-            context,
-            AppColors.purpleRed700,
-            DetailsRoutes.detailsHome,
           ),
         ),
         CardComponent(
@@ -82,15 +74,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
         CardComponent(
-          title: 'CEP por API',
-          color: AppColors.red600,
-          func: () => _goToPage(
-            context,
-            AppColors.red600,
-            CepRoutes.cepHome,
-          ),
-        ),
-        CardComponent(
           title: 'CRUD com API',
           color: AppColors.orange,
           func: () => _goToPage(
@@ -100,9 +83,31 @@ class HomePage extends StatelessWidget {
           ),
         ),
         CardComponent(
-          title: 'CRUD com Firebase | Em breve!',
+          title: 'CRUD com Firebase',
           color: AppColors.green700,
-          func: () => {},
+          func: () => _goToPage(
+            context,
+            AppColors.green700,
+            CrudFirebaseRoutes.collaboratorsList,
+          ),
+        ),
+        CardComponent(
+          title: 'Detalhes',
+          color: AppColors.purpleRed700,
+          func: () => _goToPage(
+            context,
+            AppColors.purpleRed700,
+            DetailsRoutes.detailsHome,
+          ),
+        ),
+        CardComponent(
+          title: 'IMC',
+          color: AppColors.purple700,
+          func: () => _goToPage(
+            context,
+            AppColors.purple700,
+            ImcRoutes.imcHome,
+          ),
         ),
       ],
     );
