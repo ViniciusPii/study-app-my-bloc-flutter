@@ -12,12 +12,11 @@ import 'package:superapp_my_bloc/src/modules/imc/imc_injection.dart';
 Dependon get di => Dependon.instance;
 
 injection() {
-  final di = Dependon.instance;
-
   //services
   di.registerLazySingleton(() => Dio());
   di.registerLazySingleton(() => FirebaseFirestore.instance);
 
+  //injection modules
   CepInjection.injection();
   ImcInjection.injection();
   CrudInjections.injection();
