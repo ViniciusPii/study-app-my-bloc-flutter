@@ -41,7 +41,7 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Utils.getColorArgs(context);
+    final color = Utils.getArgs(context);
 
     return Scaffold(
       appBar: AppBar(

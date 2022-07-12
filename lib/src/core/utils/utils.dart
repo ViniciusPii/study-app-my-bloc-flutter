@@ -8,6 +8,5 @@ class Utils {
   static Color getLuminance(Color color) =>
       color.computeLuminance() > 0.5 ? AppExtension.textColor : AppColors.white;
 
-  static Color getColorArgs(BuildContext context) =>
-      ModalRoute.of(context)?.settings.arguments as Color;
+  static T getArgs<T>(BuildContext context) => ModalRoute.of(context)?.settings.arguments as T;
 }
