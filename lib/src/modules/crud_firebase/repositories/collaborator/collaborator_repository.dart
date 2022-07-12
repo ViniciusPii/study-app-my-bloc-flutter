@@ -4,5 +4,6 @@ abstract class CollaboratorRepository {
   Stream<List<CollaboratorModel>> getCollaborators();
   Future<void> removeAllCollaborator();
   Future<void> addCollaborator(CollaboratorModel collaborator);
+  Future<void> updateCollaborator(CollaboratorModel collaborator);
   Future<void> removeCollaborator(CollaboratorModel collaborator);
 }

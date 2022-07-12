@@ -43,4 +43,16 @@ class CollaboratorRepositoryImpl implements CollaboratorRepository {
 
     await batch.commit();
   }
+
+  @override
+  Future<void> updateCollaborator(CollaboratorModel collaborator) async {
+    try {
+      await _db
+          .doc(collaborator.id)
+          .update(collaborator.toJson())
+          .timeout(const Duration(seconds: 3));
+    } catch (e) {
+      throw AppException(message: 'Sua conexão apresenta instabilidades!');
+    }
+  }
 }

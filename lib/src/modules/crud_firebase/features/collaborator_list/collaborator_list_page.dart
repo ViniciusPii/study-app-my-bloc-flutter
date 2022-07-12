@@ -8,6 +8,7 @@ import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_list/bloc/collaborator_list_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/routes/crud_firebase_routes.dart';
 
 class CollaboratorListPage extends StatefulWidget {
@@ -50,47 +51,7 @@ class _CollaboratorListPageState extends State<CollaboratorListPage> {
             const SizedBox(
               height: AppDimension.size_5,
             ),
-            BlocConsumer<CollaboratorListBloc, CollaboratorListState>(
-              bloc: bloc,
-              builder: (context, state) {
-                final collaborators = state.collaborators;
-
-                if (state is CollaboratorListLoading || state is CollaboratorListInitial) {
-                  return Expanded(
-                    child: ThreeBounceComponent(
-                      color: color,
-                    ),
-                  );
-                }
-
-                if (collaborators.isEmpty) {
-                  return Expanded(
-                    child: Center(
-                      child: Text(
-                        'Nenhum colaborador cadastrado',
-                        style: AppFonts.titleLarge(),
-                      ),
-                    ),
-                  );
-                }
-
-                return Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      final collaborator = collaborators[index];
-
-                      return PeopleCardComponent(
-                        title: collaborator.name,
-                        subtitle: collaborator.job,
-                        leftFunc: () {},
-                        rightFunc: () => bloc.removeCollaborator(collaborator),
-                      );
-                    },
-                    itemCount: state.collaborators.length,
-                  ),
-                );
-              },
-            ),
+            _buildListView(color),
           ],
         ),
       ),
@@ -101,6 +62,56 @@ class _CollaboratorListPageState extends State<CollaboratorListPage> {
         ),
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+  Widget _buildListView(Color color) {
+    return BlocConsumer<CollaboratorListBloc, CollaboratorListState>(
+      bloc: bloc,
+      builder: (context, state) {
+        final collaborators = state.collaborators;
+
+        if (state is CollaboratorListLoading || state is CollaboratorListInitial) {
+          return Expanded(
+            child: ThreeBounceComponent(
+              color: color,
+            ),
+          );
+        }
+
+        if (collaborators.isEmpty) {
+          return Expanded(
+            child: Center(
+              child: Text(
+                'Nenhum colaborador cadastrado',
+                style: AppFonts.titleLarge(),
+              ),
+            ),
+          );
+        }
+
+        return Expanded(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              final collaborator = collaborators[index];
+
+              return PeopleCardComponent(
+                title: collaborator.name,
+                subtitle: collaborator.job,
+                leftFunc: () => Navigator.of(context).pushNamed(
+                  CrudFirebaseRoutes.collaboratorsUpdate,
+                  arguments: CollaboratorArgsModel(
+                    color: color,
+                    collaborator: collaborator,
+                  ),
+                ),
+                rightFunc: () => bloc.removeCollaborator(collaborator),
+              );
+            },
+            itemCount: state.collaborators.length,
+          ),
+        );
+      },
     );
   }
 
