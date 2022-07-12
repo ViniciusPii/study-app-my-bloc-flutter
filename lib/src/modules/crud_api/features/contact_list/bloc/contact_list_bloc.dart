@@ -12,7 +12,7 @@ class ContactListBloc extends Bloc<ContactListState> {
 
   final ContactRepository _contactRepository;
 
-  void getContacts() async {
+  Future<void> getContacts() async {
     emit(ContactListLoading());
     await Future.delayed(const Duration(milliseconds: 800));
 
@@ -25,7 +25,7 @@ class ContactListBloc extends Bloc<ContactListState> {
     }
   }
 
-  void removeContact(ContactModel contact) async {
+  Future<void> removeContact(ContactModel contact) async {
     try {
       await _contactRepository.removeContact(contact);
       getContacts();

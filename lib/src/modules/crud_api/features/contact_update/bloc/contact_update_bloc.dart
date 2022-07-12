@@ -12,7 +12,7 @@ class ContactUpdateBloc extends Bloc<ContactUpdateState> {
 
   final ContactRepository _contactRepository;
 
-  void updateContact(ContactModel contact) async {
+  Future<void> updateContact(ContactModel contact) async {
     emit(ContactUpdateLoading());
     await Future.delayed(const Duration(milliseconds: 800));
     try {

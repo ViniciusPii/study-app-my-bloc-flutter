@@ -12,7 +12,7 @@ class ContactRegisterBloc extends Bloc<ContactRegisterState> {
 
   final ContactRepository _contactRepository;
 
-  void addContact(ContactModel contact) async {
+  Future<void> addContact(ContactModel contact) async {
     emit(ContactRegisterLoading());
     await Future.delayed(const Duration(milliseconds: 800));
     try {

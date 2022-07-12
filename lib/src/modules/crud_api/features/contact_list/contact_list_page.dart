@@ -126,29 +126,30 @@ class _ContactListPageState extends State<ContactListPage> {
           );
         }
 
-        return ListView.builder(
-          shrinkWrap: true,
-          itemBuilder: ((context, index) {
-            final contact = contacts[index];
+        return Expanded(
+          child: ListView.builder(
+            itemBuilder: ((context, index) {
+              final contact = contacts[index];
 
-            return PeopleCardComponent(
-              title: contact.name,
-              subtitle: contact.email,
-              leftFunc: () async {
-                await Navigator.of(context).pushNamed(
-                  CrudApiRoutes.updateContact,
-                  arguments: ContactArgsModel(
-                    color: color,
-                    contact: contact,
-                  ),
-                );
+              return PeopleCardComponent(
+                title: contact.name,
+                subtitle: contact.email,
+                leftFunc: () async {
+                  await Navigator.of(context).pushNamed(
+                    CrudApiRoutes.updateContact,
+                    arguments: ContactArgsModel(
+                      color: color,
+                      contact: contact,
+                    ),
+                  );
 
-                bloc.getContacts();
-              },
-              rightFunc: () => bloc.removeContact(contact),
-            );
-          }),
-          itemCount: contacts.length,
+                  bloc.getContacts();
+                },
+                rightFunc: () => bloc.removeContact(contact),
+              );
+            }),
+            itemCount: contacts.length,
+          ),
         );
       },
     );
