@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:superapp_my_bloc/src/core/bloc/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
+import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_register/bloc/collaborator_register_bloc.dart';
@@ -68,15 +70,43 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
                 const SizedBox(
                   height: AppDimension.size_3,
                 ),
-                ButtonComponent(
-                  color: color,
-                  child: const Text('Cadastrar'),
-                  func: () {
-                    if (_formKey.currentState!.validate()) {
-                      bloc.addCollaborator(
-                        CollaboratorModel(job: _jobEC.text, name: _nameEC.text),
-                      );
+                BlocConsumer<CollaboratorRegisterBloc, CollaboratorRegisterState>(
+                  bloc: bloc,
+                  listener: (context, state) {
+                    if (state is CollaboratorRegisterSuccess) {
+                      Navigator.pop(context);
                     }
+
+                    if (state is CollaboratorRegisterError) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(state.message),
+                        ),
+                      );
+
+                      Navigator.pop(context);
+                    }
+                  },
+                  builder: (context, state) {
+                    return LoaderComponent(
+                      color: color,
+                      loading: state is CollaboratorRegisterLoading,
+                      child: ButtonComponent(
+                        color: color,
+                        child: const Text('Cadastrar'),
+                        func: () {
+                          if (_formKey.currentState!.validate()) {
+                            bloc.addCollaborator(
+                              CollaboratorModel(
+                                job: _jobEC.text,
+                                name: _nameEC.text,
+                                timestamp: DateTime.now(),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    );
                   },
                 )
               ],

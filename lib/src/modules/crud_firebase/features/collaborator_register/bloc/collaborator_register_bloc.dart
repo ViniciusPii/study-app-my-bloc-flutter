@@ -1,4 +1,5 @@
 import 'package:superapp_my_bloc/src/core/bloc/bloc.dart';
+import 'package:superapp_my_bloc/src/core/exceptions/app_exception.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/repositories/collaborator/collaborator_repository.dart';
 
@@ -12,7 +13,13 @@ class CollaboratorRegisterBloc extends Bloc<CollaboratorRegisterState> {
 
   final CollaboratorRepository _collaboratorRepository;
 
-  void addCollaborator(CollaboratorModel collaborator) {
-    _collaboratorRepository.addCollaborator(collaborator);
+  Future<void> addCollaborator(CollaboratorModel collaborator) async {
+    emit(CollaboratorRegisterLoading());
+    try {
+      await _collaboratorRepository.addCollaborator(collaborator);
+      emit(CollaboratorRegisterSuccess());
+    } on AppException catch (e) {
+      emit(CollaboratorRegisterError(message: e.message));
+    }
   }
 }
