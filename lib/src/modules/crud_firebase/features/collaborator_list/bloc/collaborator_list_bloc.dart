@@ -14,7 +14,6 @@ class CollaboratorListBloc extends Bloc<CollaboratorListState> {
 
   void getCollaborators() => _collaboratorRepository.getCollaborators().listen(
         (collaborators) {
-          emit(CollaboratorListLoading());
           emit(CollaboratorListSuccess(collaborators: collaborators));
         },
       );
