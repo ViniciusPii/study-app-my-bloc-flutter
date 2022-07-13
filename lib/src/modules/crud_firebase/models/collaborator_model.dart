@@ -3,15 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CollaboratorModel {
   CollaboratorModel({
     this.id,
+    this.timestamp,
     required this.job,
     required this.name,
-    required this.timestamp,
   });
 
   final String? id;
   final String job;
   final String name;
-  final DateTime timestamp;
+  final DateTime? timestamp;
 
   factory CollaboratorModel.fromDocument(DocumentSnapshot<Map<String, dynamic>> doc) {
     return CollaboratorModel(
@@ -26,7 +26,7 @@ class CollaboratorModel {
     return <String, dynamic>{
       'job': job,
       'name': name,
-      'timestamp': timestamp,
+      'timestamp': DateTime.now(),
     };
   }
 }

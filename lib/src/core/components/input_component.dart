@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 class InputComponent extends StatelessWidget {
   const InputComponent({
     Key? key,
+    this.controller,
+    this.onFieldSubmitted,
+    this.textInputAction = TextInputAction.next,
     required this.label,
     required this.validator,
-    this.controller,
   }) : super(key: key);
 
   final String label;
+  final TextInputAction textInputAction;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,9 @@ class InputComponent extends StatelessWidget {
       autofocus: true,
       validator: validator,
       controller: controller,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
+      textCapitalization: TextCapitalization.sentences,
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }

@@ -65,6 +65,8 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
                 InputComponent(
                   label: 'Profissão',
                   controller: _jobEC,
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: (_) => _addCollaborator(),
                   validator: Validatorless.required('Obrigatório'),
                 ),
                 const SizedBox(
@@ -94,17 +96,7 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
                       child: ButtonComponent(
                         color: color,
                         child: const Text('Cadastrar'),
-                        func: () {
-                          if (_formKey.currentState!.validate()) {
-                            bloc.addCollaborator(
-                              CollaboratorModel(
-                                job: _jobEC.text,
-                                name: _nameEC.text,
-                                timestamp: DateTime.now(),
-                              ),
-                            );
-                          }
-                        },
+                        func: () => _addCollaborator(),
                       ),
                     );
                   },
@@ -115,5 +107,16 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
         ),
       ),
     );
+  }
+
+  void _addCollaborator() {
+    if (_formKey.currentState!.validate()) {
+      bloc.addCollaborator(
+        CollaboratorModel(
+          job: _jobEC.text,
+          name: _nameEC.text,
+        ),
+      );
+    }
   }
 }

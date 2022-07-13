@@ -75,6 +75,8 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
                 InputComponent(
                   label: 'Profissão',
                   controller: _jobEC,
+                  textInputAction: TextInputAction.done,
+                  onFieldSubmitted: (_) => _updateCollaborator(),
                   validator: Validatorless.required('Obrigatório'),
                 ),
                 const SizedBox(
@@ -104,14 +106,7 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
                       child: ButtonComponent(
                         color: color,
                         child: const Text('Editar'),
-                        func: () => bloc.updateCollaborator(
-                          CollaboratorModel(
-                            id: collaborator.id,
-                            job: _jobEC.text,
-                            name: _nameEC.text,
-                            timestamp: DateTime.now(),
-                          ),
-                        ),
+                        func: () => _updateCollaborator(),
                       ),
                     );
                   },
@@ -122,5 +117,17 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
         ),
       ),
     );
+  }
+
+  void _updateCollaborator() {
+    if (_formKey.currentState!.validate()) {
+      bloc.updateCollaborator(
+        CollaboratorModel(
+          id: collaborator.id,
+          job: _jobEC.text,
+          name: _nameEC.text,
+        ),
+      );
+    }
   }
 }
