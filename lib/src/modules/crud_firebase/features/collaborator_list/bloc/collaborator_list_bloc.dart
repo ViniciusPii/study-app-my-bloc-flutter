@@ -19,10 +19,8 @@ class CollaboratorListBloc extends Bloc<CollaboratorListState> {
         },
       );
 
-  Future<void> removeCollaborator(CollaboratorModel collaborator) async {
-    emit(CollaboratorListLoading());
-    await _collaboratorRepository.removeCollaborator(collaborator);
-    emit(CollaboratorListSuccess(collaborators: state.collaborators));
+  void removeCollaborator(CollaboratorModel collaborator) {
+    _collaboratorRepository.removeCollaborator(collaborator);
   }
 
   Future<void> removeAllCollaborator() async {

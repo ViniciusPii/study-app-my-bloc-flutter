@@ -28,8 +28,7 @@ class CollaboratorRepositoryImpl implements CollaboratorRepository {
           querySnapshot.docs.map((doc) => CollaboratorModel.fromDocument(doc)).toList());
 
   @override
-  Future<void> removeCollaborator(CollaboratorModel collaborator) =>
-      _db.doc(collaborator.id).delete();
+  void removeCollaborator(CollaboratorModel collaborator) => _db.doc(collaborator.id).delete();
 
   @override
   Future<void> removeAllCollaborator() async {
