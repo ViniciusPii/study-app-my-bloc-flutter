@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
-import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/cep_injection.dart';
 import 'package:superapp_my_bloc/src/modules/counter/counter_injection.dart';
 import 'package:superapp_my_bloc/src/modules/crud/crud_injections.dart';

@@ -1,4 +1,4 @@
-import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/injection.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/bloc/user_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud/repositories/user/user_repository.dart';

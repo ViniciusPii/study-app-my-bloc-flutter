@@ -1,4 +1,4 @@
-import 'package:superapp_my_bloc/src/core/bloc/bloc.dart';
+import 'package:superapp_my_bloc/src/core/infra/bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/repositories/contact/contact_repository.dart';
 

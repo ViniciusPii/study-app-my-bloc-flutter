@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/bloc/bloc.dart';
+import 'package:superapp_my_bloc/src/core/infra/bloc.dart';
 
 class BlocConsumer<B extends Bloc, S extends Object> extends StatelessWidget {
   const BlocConsumer({

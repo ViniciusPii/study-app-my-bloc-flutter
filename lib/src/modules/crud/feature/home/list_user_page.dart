@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/bloc/components/bloc_consumer.dart';
-import 'package:superapp_my_bloc/src/core/bloc/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';

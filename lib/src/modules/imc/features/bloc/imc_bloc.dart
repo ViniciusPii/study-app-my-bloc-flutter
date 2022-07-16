@@ -1,4 +1,4 @@
-import 'package:superapp_my_bloc/src/core/bloc/bloc.dart';
+import 'package:superapp_my_bloc/src/core/infra/bloc.dart';
 
 part 'imc_state.dart';
 
