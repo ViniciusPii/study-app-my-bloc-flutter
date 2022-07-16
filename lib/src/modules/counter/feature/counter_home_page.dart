@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
@@ -62,7 +62,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
   }
 
   Widget _buildButtons(Color color) {
-    return BlocConsumer<CounterBloc, CounterState>(
+    return BlocBuilder<CounterBloc, CounterState>(
       bloc: bloc,
       builder: (context, state) {
         return LoaderComponent(
@@ -93,7 +93,7 @@ class _CounterHomePageState extends State<CounterHomePage> {
   }
 
   Widget _buildTitlte() {
-    return BlocConsumer<CounterBloc, CounterState>(
+    return BlocBuilder<CounterBloc, CounterState>(
       bloc: bloc,
       builder: (context, state) {
         return Text(

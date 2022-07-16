@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/people_card_component.dart';
@@ -66,7 +66,7 @@ class _CollaboratorListPageState extends State<CollaboratorListPage> {
   }
 
   Widget _buildListView(Color color) {
-    return BlocConsumer<CollaboratorListBloc, CollaboratorListState>(
+    return BlocBuilder<CollaboratorListBloc, CollaboratorListState>(
       bloc: bloc,
       builder: (context, state) {
         final collaborators = state.collaborators;

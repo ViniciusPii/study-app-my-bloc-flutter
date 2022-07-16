@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
@@ -68,7 +68,7 @@ class _ListUserPageState extends State<ListUserPage> {
   }
 
   Widget _buildList(Color color) {
-    return BlocConsumer<UserBloc, UserState>(
+    return BlocBuilder<UserBloc, UserState>(
       bloc: bloc,
       builder: (context, state) {
         final users = state.users;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
@@ -70,7 +70,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
   }
 
   Widget _buildResult(Color color) {
-    return BlocConsumer<ImcBloc, ImcState>(
+    return BlocBuilder<ImcBloc, ImcState>(
       bloc: bloc,
       builder: (context, state) {
         return Visibility(
@@ -116,7 +116,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
           const SizedBox(
             height: AppDimension.size_4,
           ),
-          BlocConsumer<ImcBloc, ImcState>(
+          BlocBuilder<ImcBloc, ImcState>(
             bloc: bloc,
             builder: (context, state) {
               return LoaderComponent(
