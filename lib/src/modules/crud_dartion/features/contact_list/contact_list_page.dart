@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
-import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/people_card_component.dart';
 import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/bloc/contact_list_bloc.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/routes/crud_api_routes.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_list/bloc/contact_list_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/models/contact_args_model.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/routes/crud_api_routes.dart';
 
 class ContactListPage extends StatefulWidget {
   const ContactListPage({Key? key}) : super(key: key);

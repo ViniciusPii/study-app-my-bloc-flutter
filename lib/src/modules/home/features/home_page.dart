@@ -7,8 +7,8 @@ import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/routes/cep_routes.dart';
 import 'package:superapp_my_bloc/src/modules/counter/routes/counter_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud/routes/crud_routes.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/routes/crud_api_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/routes/crud_auth_routes.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion//routes/crud_api_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/routes/crud_firebase_routes.dart';
 import 'package:superapp_my_bloc/src/modules/details/routes/details_routes.dart';
 import 'package:superapp_my_bloc/src/modules/imc/routes/imc_routes.dart';
@@ -78,21 +78,21 @@ class HomePage extends StatelessWidget {
           ),
         ),
         CardComponent(
-          title: 'CRUD com API',
-          color: AppColors.orange,
-          func: () => _goToPage(
-            context,
-            AppColors.orange,
-            CrudApiRoutes.listContact,
-          ),
-        ),
-        CardComponent(
           title: 'CRUD com Auth',
           color: AppColors.chartreuse,
           func: () => _goToPageReplace(
             context,
             AppColors.chartreuse,
             CrudAuthRoutes.crudAuthSplash,
+          ),
+        ),
+        CardComponent(
+          title: 'CRUD com Dartion',
+          color: AppColors.orange,
+          func: () => _goToPage(
+            context,
+            AppColors.orange,
+            CrudApiRoutes.listContact,
           ),
         ),
         CardComponent(

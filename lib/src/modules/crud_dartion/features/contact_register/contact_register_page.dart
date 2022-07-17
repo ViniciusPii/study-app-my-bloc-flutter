@@ -1,43 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
-import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_update/bloc/contact_update_bloc.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_args_model.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_model.dart';
+import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_register/bloc/contact_register_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/models/contact_model.dart';
 import 'package:validatorless/validatorless.dart';
 
-class ContactUpdatePage extends StatefulWidget {
-  const ContactUpdatePage({
-    Key? key,
-    required this.args,
-  }) : super(key: key);
-
-  final ContactArgsModel args;
+class ContactRegisterPage extends StatefulWidget {
+  const ContactRegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<ContactUpdatePage> createState() => _ContactUpdatePageState();
+  State<ContactRegisterPage> createState() => _ContactRegisterPageState();
 }
 
-class _ContactUpdatePageState extends State<ContactUpdatePage> {
-  late final ContactUpdateBloc bloc;
-
-  late final color = widget.args.color;
-  late final contact = widget.args.contact;
+class _ContactRegisterPageState extends State<ContactRegisterPage> {
+  late final ContactRegisterBloc bloc;
 
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _nameEC;
-  late final TextEditingController _emailEC;
+  final _nameEC = TextEditingController();
+  final _emailEC = TextEditingController();
 
   @override
   void initState() {
     bloc = get();
-    _nameEC = TextEditingController(text: contact.name);
-    _emailEC = TextEditingController(text: contact.email);
     super.initState();
   }
 
@@ -51,10 +41,12 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
 
   @override
   Widget build(BuildContext context) {
+    final color = Utils.getArgs(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color,
-        title: Text('Editando ${contact.name}'),
+        title: const Text('Adicione seu contato'),
       ),
       body: BaseViewComponent(
         child: Center(
@@ -89,14 +81,14 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
           const SizedBox(
             height: AppDimension.size_3,
           ),
-          BlocConsumer<ContactUpdateBloc, ContactUpdateState>(
+          BlocConsumer<ContactRegisterBloc, ContactRegisterState>(
             bloc: bloc,
             listener: (context, state) {
-              if (state is ContactUpdateSuccess) {
+              if (state is ContactRegisterSuccess) {
                 Navigator.pop(context);
               }
 
-              if (state is ContactUpdateError) {
+              if (state is ContactRegisterError) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -109,15 +101,14 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
             builder: (context, state) {
               return LoaderComponent(
                 color: color,
-                loading: state is ContactUpdateLoading,
+                loading: state is ContactRegisterLoading,
                 child: ButtonComponent(
                   color: color,
                   child: const Text('Cadastrar'),
                   func: () {
                     if (_formKey.currentState!.validate()) {
-                      bloc.updateContact(
+                      bloc.addContact(
                         ContactModel(
-                          id: contact.id,
                           name: _nameEC.text,
                           email: _emailEC.text,
                           timestamp: DateTime.now(),

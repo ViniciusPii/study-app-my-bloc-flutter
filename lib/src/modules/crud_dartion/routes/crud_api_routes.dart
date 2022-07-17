@@ -1,7 +1,7 @@
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_list/contact_list_page.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_register/contact_register_page.dart';
-import 'package:superapp_my_bloc/src/modules/crud_api/features/contact_update/contact_update_page.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_list/contact_list_page.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_register/contact_register_page.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_update/contact_update_page.dart';
 
 class CrudApiRoutes {
   CrudApiRoutes._();

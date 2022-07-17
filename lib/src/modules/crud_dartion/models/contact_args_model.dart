@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:superapp_my_bloc/src/modules/crud_api/models/contact_model.dart';
+import 'package:superapp_my_bloc/src/modules/crud_dartion/models/contact_model.dart';
 
 class ContactArgsModel {
   ContactArgsModel({
