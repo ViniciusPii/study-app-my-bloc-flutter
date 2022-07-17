@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/app_material_colors.dart';
+import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
 class ButtonComponent extends StatelessWidget {
   const ButtonComponent({
@@ -16,7 +19,13 @@ class ButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: func,
-      style: ElevatedButton.styleFrom(primary: color),
+      style: ElevatedButton.styleFrom(
+        primary: color,
+        onPrimary: Utils.getLuminance(color),
+        textStyle: AppFonts.bodyLarge(
+          color: AppMaterialColors.red,
+        ),
+      ),
       child: child,
     );
   }

@@ -6,6 +6,7 @@ import 'package:superapp_my_bloc/src/modules/cep_api/cep_injection.dart';
 import 'package:superapp_my_bloc/src/modules/counter/counter_injection.dart';
 import 'package:superapp_my_bloc/src/modules/crud/crud_injections.dart';
 import 'package:superapp_my_bloc/src/modules/crud_api/crud_api_injection.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/crud_auth_injection.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/crud_firebase_injection.dart';
 import 'package:superapp_my_bloc/src/modules/details/details_injection.dart';
 import 'package:superapp_my_bloc/src/modules/imc/imc_injection.dart';
@@ -25,5 +26,6 @@ injection() {
   DetailsInjection.injection();
   CrudApiInjection.injection();
   CounterInjection.injection();
+  CrudAuthInjection.injection();
   CrudFirebaseInjection.injection();
 }
