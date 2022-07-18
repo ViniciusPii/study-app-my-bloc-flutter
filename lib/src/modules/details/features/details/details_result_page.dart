@@ -15,11 +15,15 @@ class DetailsResultPage extends StatelessWidget {
         title: const Text('Resultado'),
       ),
       body: Center(
-        child: Text(
-          'O resultado é ${args.result}',
-          style: AppFonts.titleLarge(),
-        ),
+        child: _buildResult(args),
       ),
+    );
+  }
+
+  Widget _buildResult(args) {
+    return Text(
+      'O resultado é ${args.result}',
+      style: AppFonts.titleLarge(),
     );
   }
 }

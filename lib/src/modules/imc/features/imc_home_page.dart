@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
-import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/imc/features/bloc/imc_bloc.dart';
 import 'package:validatorless/validatorless.dart';
@@ -101,16 +102,20 @@ class _ImcHomePageState extends State<ImcHomePage> {
       child: Column(
         children: [
           InputComponent(
+            suffix: 'm',
             label: 'Altura',
             controller: _heightEC,
+            inputFormatters: [AppMasks.decimalMask()],
             validator: Validatorless.required('Campo obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_2,
           ),
           InputComponent(
+            suffix: 'Kg',
             label: 'Peso',
             controller: _weightEC,
+            inputFormatters: [AppMasks.decimalMask()],
             validator: Validatorless.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -128,8 +133,8 @@ class _ImcHomePageState extends State<ImcHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.imcCalculate(
-                        double.parse(_heightEC.text.replaceAll(',', '.')),
-                        double.parse(_weightEC.text.replaceAll(',', '.')),
+                        double.parse(AppMasks.unMaskNumber(_heightEC.text)),
+                        double.parse(AppMasks.unMaskNumber(_weightEC.text)),
                       );
 
                       FocusManager.instance.primaryFocus?.unfocus();

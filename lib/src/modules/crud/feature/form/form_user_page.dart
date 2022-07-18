@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
-import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/bloc/user_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud/models/user_model.dart';
@@ -64,6 +65,7 @@ class _FormUserPageState extends State<FormUserPage> {
             label: 'Nome',
             controller: _nameEC,
             validator: Validatorless.required('Obrigatório'),
+            inputFormatters: [AppMasks.onlyLetters],
           ),
           const SizedBox(
             height: AppDimension.size_3,

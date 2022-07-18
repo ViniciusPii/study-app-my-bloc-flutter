@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
-import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
+import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_update/bloc/collaborator_update_bloc.dart';
-
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_model.dart';
 import 'package:validatorless/validatorless.dart';
@@ -59,62 +59,67 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
       ),
       body: BaseViewComponent(
         child: Center(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InputComponent(
-                  label: 'Nome',
-                  controller: _nameEC,
-                  validator: Validatorless.required('Obrigatório'),
-                ),
-                const SizedBox(
-                  height: AppDimension.size_2,
-                ),
-                InputComponent(
-                  label: 'Profissão',
-                  controller: _jobEC,
-                  textInputAction: TextInputAction.done,
-                  onFieldSubmitted: (_) => _updateCollaborator(),
-                  validator: Validatorless.required('Obrigatório'),
-                ),
-                const SizedBox(
-                  height: AppDimension.size_3,
-                ),
-                BlocConsumer<CollaboratorUpdateBloc, CollaboratorUpdateState>(
-                  bloc: bloc,
-                  listener: (context, state) {
-                    if (state is CollaboratorUpdateSuccess) {
-                      Navigator.pop(context);
-                    }
-
-                    if (state is CollaboratorUpdateError) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(state.message),
-                        ),
-                      );
-
-                      Navigator.pop(context);
-                    }
-                  },
-                  builder: (context, state) {
-                    return LoaderComponent(
-                      color: color,
-                      loading: state is CollaboratorUpdateLoading,
-                      child: ButtonComponent(
-                        color: color,
-                        child: const Text('Editar'),
-                        func: () => _updateCollaborator(),
-                      ),
-                    );
-                  },
-                )
-              ],
-            ),
-          ),
+          child: _buildForm(),
         ),
+      ),
+    );
+  }
+
+  Widget _buildForm() {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          InputComponent(
+            label: 'Nome',
+            controller: _nameEC,
+            inputFormatters: [AppMasks.onlyLetters],
+            validator: Validatorless.required('Obrigatório'),
+          ),
+          const SizedBox(
+            height: AppDimension.size_2,
+          ),
+          InputComponent(
+            label: 'Profissão',
+            controller: _jobEC,
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (_) => _updateCollaborator(),
+            validator: Validatorless.required('Obrigatório'),
+          ),
+          const SizedBox(
+            height: AppDimension.size_3,
+          ),
+          BlocConsumer<CollaboratorUpdateBloc, CollaboratorUpdateState>(
+            bloc: bloc,
+            listener: (context, state) {
+              if (state is CollaboratorUpdateSuccess) {
+                Navigator.pop(context);
+              }
+
+              if (state is CollaboratorUpdateError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                  ),
+                );
+
+                Navigator.pop(context);
+              }
+            },
+            builder: (context, state) {
+              return LoaderComponent(
+                color: color,
+                loading: state is CollaboratorUpdateLoading,
+                child: ButtonComponent(
+                  color: color,
+                  child: const Text('Editar'),
+                  func: () => _updateCollaborator(),
+                ),
+              );
+            },
+          )
+        ],
       ),
     );
   }

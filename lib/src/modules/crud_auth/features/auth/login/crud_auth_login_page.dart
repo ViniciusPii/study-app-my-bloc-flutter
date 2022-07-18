@@ -9,7 +9,6 @@ import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
-import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/auth/login/bloc/crud_auth_login_bloc.dart';
 
 class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
@@ -17,7 +16,7 @@ class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
 
   @override
   Widget build(BuildContext context) {
-    final color = Utils.getArgs(context);
+    // final color = Utils.getArgs(context);
 
     return Scaffold(
       body: BaseViewComponent(

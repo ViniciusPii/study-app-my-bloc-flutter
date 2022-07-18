@@ -10,7 +10,7 @@ class ImcBloc extends Bloc<ImcState> {
     await Future.delayed(const Duration(milliseconds: 800));
 
     String result = '';
-    double imc = weight / (height * height);
+    double imc = weight / (height * height) * 100;
 
     if (imc < 18.5) {
       result = 'Abaixo do peso';
