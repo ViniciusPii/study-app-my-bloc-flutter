@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
 class DetailsResultPage extends StatelessWidget {
@@ -22,7 +23,10 @@ class DetailsResultPage extends StatelessWidget {
 
   Widget _buildResult(args) {
     return Text(
-      'O resultado é ${args.result}',
+      'O resultado é${AppMasks.formatNumber(
+        value: args.result,
+        decimal: 0,
+      )}',
       style: AppFonts.titleLarge(),
     );
   }

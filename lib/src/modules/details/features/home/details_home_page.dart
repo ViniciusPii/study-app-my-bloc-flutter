@@ -109,8 +109,8 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.calculate(
-                        int.parse(_firstNumberEC.text),
-                        int.parse(_secondNumberEC.text),
+                        int.parse(AppMasks.unMaskNumber(_firstNumberEC.text)),
+                        int.parse(AppMasks.unMaskNumber(_secondNumberEC.text)),
                       );
                     }
                   },

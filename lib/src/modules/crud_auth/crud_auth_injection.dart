@@ -1,6 +1,7 @@
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/injection.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/auth/login/bloc/crud_auth_login_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/features/home/bloc/crud_auth_home_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/splash/bloc/crud_auth_splash_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository_impl.dart';
@@ -19,6 +20,12 @@ class CrudAuthInjection {
     );
 
     //controllers
+    di.registerFactory(
+      () => CrudAuthHomeBloc(
+        firebaseAuth: get(),
+        authRepository: get(),
+      ),
+    );
     di.registerFactory(() => CrudAuthLoginBloc(authRepository: get()));
     di.registerFactory(() => CrudAuthSplashBloc(crudAuthService: get()));
   }

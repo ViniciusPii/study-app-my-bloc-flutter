@@ -11,5 +11,5 @@ class CrudAuthSplashBloc extends Bloc<CrudAuthSplashState> {
 
   final CrudAuthService _crudAuthService;
 
-  void init() => _crudAuthService.authInit();
+  void authInit() => _crudAuthService.authInit();
 }

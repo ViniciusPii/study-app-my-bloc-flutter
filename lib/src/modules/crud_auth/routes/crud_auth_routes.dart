@@ -10,8 +10,8 @@ class CrudAuthRoutes {
   static const String crudAuthSplash = '/crud/auth/splash';
 
   static final routes = {
+    crudAuthHome: (context) => CrudAuthHomePage(),
     crudAuthLogin: (context) => CrudAuthLoginPage(),
     crudAuthSplash: (context) => CrudAuthSplashPage(),
-    crudAuthHome: (context) => const CrudAuthHomePage(),
   };
 }

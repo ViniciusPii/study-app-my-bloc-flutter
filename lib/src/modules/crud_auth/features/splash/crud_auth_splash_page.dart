@@ -9,7 +9,7 @@ class CrudAuthSplashPage extends PageWidget<CrudAuthSplashBloc> {
   @override
   void onInit() {
     super.onInit();
-    WidgetsBinding.instance.addPostFrameCallback((_) => bloc.init());
+    WidgetsBinding.instance.addPostFrameCallback((_) => bloc.authInit());
   }
 
   @override
