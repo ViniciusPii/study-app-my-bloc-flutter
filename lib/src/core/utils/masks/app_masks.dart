@@ -20,7 +20,7 @@ class AppMasks {
     RegExp('[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+|s'),
   );
 
-  static String formatNumber<T>({
+  static String formatDecimalNumber<T>({
     required T value,
     int? decimal,
     String? symbol,

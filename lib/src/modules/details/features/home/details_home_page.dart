@@ -74,6 +74,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
           InputComponent(
             label: 'Primeiro',
             controller: _firstNumberEC,
+            keyboardType: TextInputType.number,
             validator: Validatorless.required('Obrigatório'),
             inputFormatters: [AppMasks.decimalMask(decimal: 0)],
           ),
@@ -83,6 +84,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
           InputComponent(
             label: 'Segundo',
             controller: _secondNumberEC,
+            keyboardType: TextInputType.number,
             validator: Validatorless.required('Obrigatório'),
             inputFormatters: [AppMasks.decimalMask(decimal: 0)],
           ),

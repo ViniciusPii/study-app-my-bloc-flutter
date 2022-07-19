@@ -75,6 +75,7 @@ class _CepHomePageState extends State<CepHomePage> {
           InputComponent(
             label: 'Cep',
             controller: _cepEC,
+            keyboardType: TextInputType.number,
             inputFormatters: [AppMasks.cepMask],
             validator: Validatorless.required('Obrigatório'),
           ),

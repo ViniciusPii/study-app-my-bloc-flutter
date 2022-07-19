@@ -23,7 +23,7 @@ class DetailsResultPage extends StatelessWidget {
 
   Widget _buildResult(args) {
     return Text(
-      'O resultado é${AppMasks.formatNumber(
+      'O resultado é${AppMasks.formatDecimalNumber(
         value: args.result,
         decimal: 0,
       )}',

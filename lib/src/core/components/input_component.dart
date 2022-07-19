@@ -8,6 +8,7 @@ class InputComponent extends StatelessWidget {
     required this.validator,
     this.suffix,
     this.controller,
+    this.keyboardType,
     this.inputFormatters,
     this.onFieldSubmitted,
     this.textInputAction = TextInputAction.next,
@@ -15,6 +16,7 @@ class InputComponent extends StatelessWidget {
 
   final String label;
   final String? suffix;
+  final TextInputType? keyboardType;
   final TextInputAction textInputAction;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -33,6 +35,7 @@ class InputComponent extends StatelessWidget {
       autofocus: true,
       validator: validator,
       controller: controller,
+      keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       textInputAction: textInputAction,
       onFieldSubmitted: onFieldSubmitted,
