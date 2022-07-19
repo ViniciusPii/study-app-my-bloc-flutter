@@ -6,12 +6,12 @@ class CrudAuthRoutes {
   CrudAuthRoutes._();
 
   static const String crudAuthHome = '/crud/auth/home';
+  static const String crudAuthLogin = '/crud/auth/login';
   static const String crudAuthSplash = '/crud/auth/splash';
-  static const String crudAuthSocialLogin = '/crud/auth/login';
 
   static final routes = {
+    crudAuthLogin: (context) => CrudAuthLoginPage(),
     crudAuthSplash: (context) => CrudAuthSplashPage(),
     crudAuthHome: (context) => const CrudAuthHomePage(),
-    crudAuthSocialLogin: (context) => CrudAuthLoginPage(),
   };
 }

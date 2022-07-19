@@ -18,7 +18,7 @@ class CrudAuthService {
         this.user = user;
 
         if (user == null) {
-          AppNavigator.to.pushReplacementNamed(CrudAuthRoutes.crudAuthSocialLogin);
+          AppNavigator.to.pushReplacementNamed(CrudAuthRoutes.crudAuthLogin);
         } else {
           AppNavigator.to.pushReplacementNamed(CrudAuthRoutes.crudAuthHome);
         }
