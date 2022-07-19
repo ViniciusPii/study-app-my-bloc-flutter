@@ -8,9 +8,9 @@ import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_register/bloc/collaborator_register_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_model.dart';
-import 'package:validatorless/validatorless.dart';
 
 class CollaboratorRegisterPage extends StatefulWidget {
   const CollaboratorRegisterPage({Key? key}) : super(key: key);
@@ -66,7 +66,7 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
             label: 'Nome',
             controller: _nameEC,
             inputFormatters: [AppMasks.onlyLetters],
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -76,7 +76,7 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
             controller: _jobEC,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _addCollaborator(),
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_3,

@@ -10,10 +10,10 @@ import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/home/bloc/result_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/details/models/details_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/details/routes/details_routes.dart';
-import 'package:validatorless/validatorless.dart';
 
 class DetailsHomePage extends StatefulWidget {
   const DetailsHomePage({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             label: 'Primeiro',
             controller: _firstNumberEC,
             keyboardType: TextInputType.number,
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
             inputFormatters: [AppMasks.decimalMask(decimal: 0)],
           ),
           const SizedBox(
@@ -85,7 +85,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             label: 'Segundo',
             controller: _secondNumberEC,
             keyboardType: TextInputType.number,
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
             inputFormatters: [AppMasks.decimalMask(decimal: 0)],
           ),
           const SizedBox(

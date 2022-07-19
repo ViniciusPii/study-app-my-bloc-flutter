@@ -10,8 +10,8 @@ import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/imc/features/bloc/imc_bloc.dart';
-import 'package:validatorless/validatorless.dart';
 
 class ImcHomePage extends StatefulWidget {
   const ImcHomePage({Key? key}) : super(key: key);
@@ -107,7 +107,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             controller: _heightEC,
             keyboardType: TextInputType.number,
             inputFormatters: [AppMasks.decimalMask()],
-            validator: Validatorless.required('Campo obrigatório'),
+            validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -118,7 +118,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             controller: _weightEC,
             keyboardType: TextInputType.number,
             inputFormatters: [AppMasks.decimalMask()],
-            validator: Validatorless.required('Campo obrigatório'),
+            validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_4,

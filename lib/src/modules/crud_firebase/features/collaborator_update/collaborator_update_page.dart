@@ -7,10 +7,10 @@ import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_update/bloc/collaborator_update_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/models/collaborator_model.dart';
-import 'package:validatorless/validatorless.dart';
 
 class CollaboratorUpdatePage extends StatefulWidget {
   const CollaboratorUpdatePage({
@@ -75,7 +75,7 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
             label: 'Nome',
             controller: _nameEC,
             inputFormatters: [AppMasks.onlyLetters],
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -85,7 +85,7 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
             controller: _jobEC,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _updateCollaborator(),
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_3,

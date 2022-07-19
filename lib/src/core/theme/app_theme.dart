@@ -8,8 +8,9 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData get defaultTheme => ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: AppExtension.fontFamily,
+        scaffoldBackgroundColor: AppExtension.background,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(

@@ -10,10 +10,10 @@ import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/bloc/address_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/models/address_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/routes/cep_routes.dart';
-import 'package:validatorless/validatorless.dart';
 
 class CepHomePage extends StatefulWidget {
   const CepHomePage({Key? key}) : super(key: key);
@@ -77,7 +77,7 @@ class _CepHomePageState extends State<CepHomePage> {
             controller: _cepEC,
             keyboardType: TextInputType.number,
             inputFormatters: [AppMasks.cepMask],
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_3,

@@ -8,9 +8,9 @@ import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_dartion/features/contact_register/bloc/contact_register_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_dartion/models/contact_model.dart';
-import 'package:validatorless/validatorless.dart';
 
 class ContactRegisterPage extends StatefulWidget {
   const ContactRegisterPage({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
             label: 'Nome',
             controller: _nameEC,
             inputFormatters: [AppMasks.onlyLetters],
-            validator: Validatorless.required('Obrigatório'),
+            validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -75,9 +75,9 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
           InputComponent(
             label: 'Email',
             controller: _emailEC,
-            validator: Validatorless.multiple([
-              Validatorless.required('Obrigatório'),
-              Validatorless.email('Formato inválido'),
+            validator: AppValidator.multiple([
+              AppValidator.required('Obrigatório'),
+              AppValidator.email('Formato inválido'),
             ]),
           ),
           const SizedBox(

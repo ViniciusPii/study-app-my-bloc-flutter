@@ -11,8 +11,8 @@ import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
+import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/home/bloc/crud_auth_home_bloc.dart';
-import 'package:validatorless/validatorless.dart';
 
 class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
   CrudAuthHomePage({Key? key}) : super(key: key);
@@ -92,7 +92,7 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
                                 label: 'Nome',
                                 controller: _nameEC,
                                 inputFormatters: [AppMasks.onlyLetters],
-                                validator: Validatorless.required('Obrigatório'),
+                                validator: AppValidator.required('Obrigatório'),
                               ),
                               const SizedBox(
                                 height: AppDimension.size_3,
