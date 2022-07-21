@@ -5,6 +5,8 @@ import 'package:superapp_my_bloc/src/modules/crud_auth/features/home/bloc/crud_a
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/splash/bloc/crud_auth_splash_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository_impl.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/user_auth/user_auth_repository.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/user_auth/user_auth_repository_impl.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/services/crud_auth_service.dart';
 
 class CrudAuthInjection {
@@ -16,13 +18,20 @@ class CrudAuthInjection {
 
     //repositories
     di.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(firebaseAuth: get()),
+      () => AuthRepositoryImpl(
+        firebaseAuth: get(),
+      ),
+    );
+    di.registerLazySingleton<UserAuthRepository>(
+      () => UserAuthRepositoryImpl(
+        firebaseAuth: get(),
+      ),
     );
 
     //controllers
     di.registerFactory(
       () => CrudAuthHomeBloc(
-        firebaseAuth: get(),
+        userAuthRepository: get(),
         authRepository: get(),
       ),
     );

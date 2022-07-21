@@ -53,11 +53,11 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              bloc.user.displayName!,
+              bloc.user.displayName ?? '',
               style: AppFonts.titleLarge(),
             ),
             Text(
-              bloc.user.email!,
+              bloc.user.email ?? '',
               style: AppFonts.bodyLarge(),
             ),
             const SizedBox(

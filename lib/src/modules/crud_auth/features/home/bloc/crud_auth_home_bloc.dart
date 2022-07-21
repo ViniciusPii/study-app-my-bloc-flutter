@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:superapp_my_bloc/src/core/infra/navigator/app_navigator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/user_auth/user_auth_repository.dart';
 
 import '/src/core/infra/bloc.dart';
 
@@ -8,16 +9,16 @@ part 'crud_auth_home_state.dart';
 
 class CrudAuthHomeBloc extends Bloc<CrudAuthHomeState> {
   CrudAuthHomeBloc({
-    required FirebaseAuth firebaseAuth,
     required AuthRepository authRepository,
+    required UserAuthRepository userAuthRepository,
   })  : _authRepository = authRepository,
-        _firebaseAuth = firebaseAuth,
+        _userAuthRepository = userAuthRepository,
         super(CrudAuthHomeInitial());
 
-  final FirebaseAuth _firebaseAuth;
   final AuthRepository _authRepository;
+  final UserAuthRepository _userAuthRepository;
 
-  late final User? _user = _firebaseAuth.currentUser;
+  late final User? _user = _userAuthRepository.getUser();
 
   User get user => _user!;
 
@@ -25,7 +26,7 @@ class CrudAuthHomeBloc extends Bloc<CrudAuthHomeState> {
 
   Future<void> changeName(String name) async {
     emit(CrudAuthHomeLoading());
-    await _user!.updateDisplayName(name);
+    await _userAuthRepository.changeName(name);
     AppNavigator.to.pop();
     emit(CrudAuthHomeSuccess());
   }
