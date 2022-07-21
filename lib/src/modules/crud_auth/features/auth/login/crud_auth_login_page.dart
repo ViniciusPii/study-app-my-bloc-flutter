@@ -9,14 +9,16 @@ import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/auth/login/bloc/crud_auth_login_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/routes/crud_auth_routes.dart';
 
 class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
   CrudAuthLoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final color = Utils.getArgs(context);
+    final color = Utils.getArgs(context);
 
     return Scaffold(
       body: BaseViewComponent(
@@ -28,7 +30,7 @@ class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
               const SizedBox(
                 height: AppDimension.size_3,
               ),
-              _buildButtons()
+              _buildButtons(context, color)
             ],
           ),
         ),
@@ -36,7 +38,7 @@ class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
     );
   }
 
-  Widget _buildButtons() {
+  Widget _buildButtons(BuildContext context, Color color) {
     return Column(
       children: [
         BlocConsumer<CrudAuthLoginBloc, CrudAuthLoginState>(
@@ -70,7 +72,27 @@ class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
               ),
             );
           },
-        )
+        ),
+        const SizedBox(
+          height: AppDimension.size_1,
+        ),
+        ButtonComponent(
+          color: color,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.mail_outline),
+              SizedBox(
+                width: AppDimension.size_1,
+              ),
+              Text('Login com email e senha'),
+            ],
+          ),
+          func: () => Navigator.of(context).pushNamed(
+            CrudAuthRoutes.crudAuthLoginEmail,
+            arguments: color,
+          ),
+        ),
       ],
     );
   }

@@ -15,11 +15,16 @@ class CrudAuthService {
     _firebaseAuth.userChanges().listen(
       (User? user) {
         if (user == null) {
-          AppNavigator.to.pushReplacementNamed(CrudAuthRoutes.crudAuthLogin);
+          AppNavigator.to.pushNamedAndRemoveUntil(
+            CrudAuthRoutes.crudAuthLogin,
+            arguments: color,
+            (route) => false,
+          );
         } else {
-          AppNavigator.to.pushReplacementNamed(
+          AppNavigator.to.pushNamedAndRemoveUntil(
             CrudAuthRoutes.crudAuthHome,
             arguments: color,
+            (route) => false,
           );
         }
       },

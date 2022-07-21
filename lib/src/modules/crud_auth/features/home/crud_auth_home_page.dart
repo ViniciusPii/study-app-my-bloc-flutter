@@ -4,6 +4,7 @@ import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
@@ -33,10 +34,8 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: color,
-        title: Text(
-          'Home',
-          style: AppFonts.titleLarge(),
-        ),
+        title: const Text('Home'),
+        foregroundColor: Utils.getLuminance(color),
         actions: [
           IconButton(
             onPressed: () => bloc.signOut(),
@@ -49,28 +48,41 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
         ],
       ),
       body: BaseViewComponent(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              bloc.user.displayName ?? '',
-              style: AppFonts.titleLarge(),
-            ),
-            Text(
-              bloc.user.email ?? '',
-              style: AppFonts.bodyLarge(),
-            ),
-            const SizedBox(
-              height: AppDimension.size_3,
-            ),
-            ButtonComponent(
-              color: color,
-              func: () {
-                _buildBottomSheet(context, color);
-              },
-              child: const Text('Mudar Nome'),
-            ),
-          ],
+        child: BlocBuilder<CrudAuthHomeBloc, CrudAuthHomeState>(
+          bloc: bloc,
+          builder: (context, state) {
+            if (bloc.user.displayName == null) {
+              return Center(
+                child: ThreeBounceComponent(
+                  color: color,
+                ),
+              );
+            }
+
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  bloc.user.displayName!,
+                  style: AppFonts.titleLarge(),
+                ),
+                Text(
+                  bloc.user.email!,
+                  style: AppFonts.bodyLarge(),
+                ),
+                const SizedBox(
+                  height: AppDimension.size_3,
+                ),
+                ButtonComponent(
+                  color: color,
+                  func: () {
+                    _buildBottomSheet(context, color);
+                  },
+                  child: const Text('Mudar Nome'),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:superapp_my_bloc/src/core/infra/navigator/app_navigator.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/user_auth/user_auth_repository.dart';
 
@@ -27,7 +26,6 @@ class CrudAuthHomeBloc extends Bloc<CrudAuthHomeState> {
   Future<void> changeName(String name) async {
     emit(CrudAuthHomeLoading());
     await _userAuthRepository.changeName(name);
-    AppNavigator.to.pop();
     emit(CrudAuthHomeSuccess());
   }
 }

@@ -30,6 +30,30 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> createUserWithEmailAndPassword(
+    String name,
+    String email,
+    String password,
+  ) async {
+    try {
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      await credential.user!.updateDisplayName(name);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        throw AppException(message: 'Não foi possível realizar o login!');
+      } else if (e.code == 'email-already-in-use') {
+        throw AppException(message: 'Não foi possível realizar o login!');
+      }
+    } catch (e) {
+      throw AppException(message: 'Não foi possível realizar o login!');
+    }
+  }
+
+  @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
     GoogleSignIn().disconnect();
