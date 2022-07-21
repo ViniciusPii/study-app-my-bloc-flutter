@@ -9,7 +9,7 @@ abstract class PageWidget<B extends Bloc> extends StatefulWidget {
 
   Widget build(BuildContext context);
 
-  void onInit() {}
+  void onInit(BuildContext context) {}
 
   void dispose() {}
 
@@ -24,7 +24,7 @@ abstract class PageWidget<B extends Bloc> extends StatefulWidget {
 class _PageWidgetState extends State<PageWidget> {
   @override
   void initState() {
-    widget.onInit();
+    widget.onInit(context);
     super.initState();
   }
 

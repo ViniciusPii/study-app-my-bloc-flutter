@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/infra/bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/services/crud_auth_service.dart';
 
@@ -11,5 +12,5 @@ class CrudAuthSplashBloc extends Bloc<CrudAuthSplashState> {
 
   final CrudAuthService _crudAuthService;
 
-  void authInit() => _crudAuthService.authInit();
+  void authInit(Color color) => _crudAuthService.authInit(color);
 }

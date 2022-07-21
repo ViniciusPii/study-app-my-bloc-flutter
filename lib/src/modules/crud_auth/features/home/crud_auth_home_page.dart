@@ -66,68 +66,75 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
             ButtonComponent(
               color: color,
               func: () {
-                showModalBottomSheet(
-                  context: context,
-                  isDismissible: false,
-                  isScrollControlled: true,
-                  builder: (context) {
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height * .65,
-                      child: BaseViewComponent(
-                        child: Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: AppDimension.size_2,
-                              ),
-                              Text(
-                                'Altere seu nome',
-                                style: AppFonts.titleLarge(),
-                              ),
-                              const SizedBox(
-                                height: AppDimension.size_3,
-                              ),
-                              InputComponent(
-                                label: 'Nome',
-                                controller: _nameEC,
-                                inputFormatters: [AppMasks.onlyLetters],
-                                validator: AppValidator.required('Obrigatório'),
-                              ),
-                              const SizedBox(
-                                height: AppDimension.size_3,
-                              ),
-                              BlocBuilder<CrudAuthHomeBloc, CrudAuthHomeState>(
-                                bloc: bloc,
-                                builder: (context, state) {
-                                  return LoaderComponent(
-                                    color: color,
-                                    loading: state is CrudAuthHomeLoading,
-                                    child: ButtonComponent(
-                                      color: color,
-                                      child: const Text('Alterar'),
-                                      func: () {
-                                        if (_formKey.currentState!.validate()) {
-                                          bloc.changeName(_nameEC.text);
-                                        }
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
+                _buildBottomSheet(context, color);
               },
               child: const Text('Mudar Nome'),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<Widget?> _buildBottomSheet(BuildContext context, color) {
+    return showModalBottomSheet(
+      context: context,
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: BaseViewComponent(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(
+                    height: AppDimension.size_2,
+                  ),
+                  Text(
+                    'Altere seu nome',
+                    style: AppFonts.titleLarge(),
+                  ),
+                  const SizedBox(
+                    height: AppDimension.size_3,
+                  ),
+                  InputComponent(
+                    label: 'Nome',
+                    controller: _nameEC,
+                    inputFormatters: [AppMasks.onlyLetters],
+                    validator: AppValidator.required('Obrigatório'),
+                  ),
+                  const SizedBox(
+                    height: AppDimension.size_3,
+                  ),
+                  BlocBuilder<CrudAuthHomeBloc, CrudAuthHomeState>(
+                    bloc: bloc,
+                    builder: (context, state) {
+                      return LoaderComponent(
+                        color: color,
+                        loading: state is CrudAuthHomeLoading,
+                        child: ButtonComponent(
+                          color: color,
+                          child: const Text('Alterar'),
+                          func: () {
+                            if (_formKey.currentState!.validate()) {
+                              bloc.changeName(_nameEC.text);
+                            }
+                          },
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
