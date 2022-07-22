@@ -38,10 +38,15 @@ class AuthRepositoryImpl implements AuthRepository {
         password: user.password,
       );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        throw AppException(message: 'Não foi possível realizar o login!');
-      } else if (e.code == 'email-already-in-use') {
-        throw AppException(message: 'Não foi possível realizar o login!');
+      if (e.code == 'email-already-in-use') {
+        throw AppException(message: 'Email já utilizado!');
+      } else if (e.code == 'invalid-email') {
+        throw AppException(message: 'Formato de email inválido!');
+      } else if (e.code == 'operation-not-allowed') {
+        throw AppException(
+            message: 'Conta de email desabilitada, entre em contato com o servidor!');
+      } else if (e.code == 'weak-password') {
+        throw AppException(message: 'Sua senha deve ter no mínimo 6 caracteres!');
       }
     } catch (e) {
       throw AppException(message: 'Não foi possível realizar o login!');
@@ -56,10 +61,14 @@ class AuthRepositoryImpl implements AuthRepository {
         password: user.password,
       );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        throw AppException(message: 'Não foi possível realizar o login!');
+      if (e.code == 'invalid-email') {
+        throw AppException(message: 'Formato de email inválido!');
+      } else if (e.code == 'user-disabled') {
+        throw AppException(message: 'Usuário desabilitado!');
+      } else if (e.code == 'user-not-found') {
+        throw AppException(message: 'Usuário ou senha incorretos!');
       } else if (e.code == 'wrong-password') {
-        throw AppException(message: 'Não foi possível realizar o login!');
+        throw AppException(message: 'Usuário ou senha incorretos!');
       }
     } catch (e) {
       throw AppException(message: 'Não foi possível realizar o login!');

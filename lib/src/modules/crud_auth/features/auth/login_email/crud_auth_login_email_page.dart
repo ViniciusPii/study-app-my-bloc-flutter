@@ -3,7 +3,8 @@ import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
-import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
+import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
@@ -64,8 +65,16 @@ class CrudAuthLoginEmailPage extends PageWidget<CrudAuthLoginEmailBloc> {
                       const SizedBox(
                         height: AppDimension.size_3,
                       ),
-                      BlocBuilder<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
+                      BlocConsumer<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
                         bloc: bloc,
+                        listener: (context, state) {
+                          if (state is CrudAuthLoginEmailError) {
+                            SnackbarComponent.error(
+                              context,
+                              message: state.message,
+                            );
+                          }
+                        },
                         builder: (context, state) {
                           return LoaderComponent(
                             color: color,

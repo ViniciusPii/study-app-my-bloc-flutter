@@ -50,10 +50,12 @@ class SnackbarComponent {
             const SizedBox(
               width: AppDimension.size_1,
             ),
-            Text(
-              message,
-              style: AppFonts.bodyLarge(
-                color: AppColors.white,
+            Flexible(
+              child: Text(
+                message,
+                style: AppFonts.bodyLarge(
+                  color: AppColors.white,
+                ),
               ),
             ),
           ],

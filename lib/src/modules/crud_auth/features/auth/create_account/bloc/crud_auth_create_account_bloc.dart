@@ -1,3 +1,4 @@
+import 'package:superapp_my_bloc/src/core/exceptions/app_exception.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/models/request/user_request_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/auth/auth_repository.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/repositories/user_auth/user_auth_repository.dart';
@@ -19,7 +20,11 @@ class CrudAuthCreateAccountBloc extends Bloc<CrudAuthCreateAccountState> {
 
   Future<void> createUserWithEmailAndPassword(UserRequestModel user) async {
     emit(CrudAuthCreateAccountLoading());
-    await _authRepository.createUserWithEmailAndPassword(user);
-    await _userAuthRepository.changeName(user.name!);
+    try {
+      await _authRepository.createUserWithEmailAndPassword(user);
+      await _userAuthRepository.changeName(user.name!);
+    } on AppException catch (e) {
+      emit(CrudAuthCreateAccountError(message: e.message));
+    }
   }
 }
