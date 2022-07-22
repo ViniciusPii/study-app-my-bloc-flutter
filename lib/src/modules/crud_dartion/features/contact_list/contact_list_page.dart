@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/people_card_component.dart';
+import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
@@ -83,10 +84,9 @@ class _ContactListPageState extends State<ContactListPage> {
       bloc: bloc,
       listener: (context, state) {
         if (state is ContactListRemoveError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-            ),
+          SnackbarComponent.error(
+            context,
+            message: state.message,
           );
         }
       },

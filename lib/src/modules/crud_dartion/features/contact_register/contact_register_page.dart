@@ -3,6 +3,7 @@ import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
@@ -91,12 +92,9 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
               }
 
               if (state is ContactRegisterError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      state.message,
-                    ),
-                  ),
+                SnackbarComponent.error(
+                  context,
+                  message: state.message,
                 );
               }
             },

@@ -37,81 +37,85 @@ class CrudAuthLoginEmailPage extends PageWidget<CrudAuthLoginEmailBloc> {
         title: const Text('Email e senha'),
         foregroundColor: Utils.getLuminance(color),
       ),
-      body: BaseViewComponent(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  InputComponent(
-                    label: 'Email',
-                    controller: _emailEC,
-                    validator: AppValidator.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_2,
-                  ),
-                  InputComponent(
-                    label: 'Senha',
-                    obscured: true,
-                    controller: _passwordEC,
-                    validator: AppValidator.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_3,
-                  ),
-                  BlocBuilder<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
-                    bloc: bloc,
-                    builder: (context, state) {
-                      return LoaderComponent(
-                        color: color,
-                        loading: state is CrudAuthLoginEmailLoading,
-                        child: ButtonComponent(
-                          color: color,
-                          child: const Text('Logar'),
-                          func: () {
-                            if (_formKey.currentState!.validate()) {
-                              bloc.signInWithEmailAndPassword(
-                                UserRequestModel(
-                                  email: _emailEC.text,
-                                  password: _passwordEC.text,
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            const Divider(),
-            const SizedBox(
-              height: AppDimension.size_3,
-            ),
-            Row(
+      body: Center(
+        child: SingleChildScrollView(
+          child: BaseViewComponent(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Não tem uma conta?'),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pushNamed(
-                    CrudAuthRoutes.crudAuthCreateAccount,
-                    arguments: color,
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      InputComponent(
+                        label: 'Email',
+                        controller: _emailEC,
+                        validator: AppValidator.required('Obrigatório'),
+                      ),
+                      const SizedBox(
+                        height: AppDimension.size_2,
+                      ),
+                      InputComponent(
+                        label: 'Senha',
+                        obscured: true,
+                        controller: _passwordEC,
+                        validator: AppValidator.required('Obrigatório'),
+                      ),
+                      const SizedBox(
+                        height: AppDimension.size_3,
+                      ),
+                      BlocBuilder<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
+                        bloc: bloc,
+                        builder: (context, state) {
+                          return LoaderComponent(
+                            color: color,
+                            loading: state is CrudAuthLoginEmailLoading,
+                            child: ButtonComponent(
+                              color: color,
+                              child: const Text('Logar'),
+                              func: () {
+                                if (_formKey.currentState!.validate()) {
+                                  bloc.signInWithEmailAndPassword(
+                                    UserRequestModel(
+                                      email: _emailEC.text,
+                                      password: _passwordEC.text,
+                                    ),
+                                  );
+                                }
+                              },
+                            ),
+                          );
+                        },
+                      )
+                    ],
                   ),
-                  style: TextButton.styleFrom(
-                    primary: AppColors.blue,
-                  ),
-                  child: const Text('Criar já!'),
+                ),
+                const SizedBox(
+                  height: AppDimension.size_5,
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: AppDimension.size_3,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Não tem uma conta?'),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pushNamed(
+                        CrudAuthRoutes.crudAuthCreateAccount,
+                        arguments: color,
+                      ),
+                      style: TextButton.styleFrom(
+                        primary: AppColors.blue,
+                      ),
+                      child: const Text('Criar já!'),
+                    )
+                  ],
                 )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );
