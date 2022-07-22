@@ -11,10 +11,12 @@ class InputComponent extends StatelessWidget {
     this.keyboardType,
     this.inputFormatters,
     this.onFieldSubmitted,
+    this.obscured = false,
     this.textInputAction = TextInputAction.next,
   }) : super(key: key);
 
   final String label;
+  final bool obscured;
   final String? suffix;
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
@@ -34,6 +36,7 @@ class InputComponent extends StatelessWidget {
       ),
       autofocus: true,
       validator: validator,
+      obscureText: obscured,
       controller: controller,
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,

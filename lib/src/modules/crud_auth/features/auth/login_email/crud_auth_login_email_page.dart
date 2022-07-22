@@ -2,14 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
+import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/features/auth/login_email/bloc/crud_auth_login_email_bloc.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/models/request/user_request_model.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/routes/crud_auth_routes.dart';
 
-class CrudAuthLoginEmailPage extends StatelessWidget {
-  const CrudAuthLoginEmailPage({Key? key}) : super(key: key);
+class CrudAuthLoginEmailPage extends PageWidget<CrudAuthLoginEmailBloc> {
+  CrudAuthLoginEmailPage({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +42,12 @@ class CrudAuthLoginEmailPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Form(
+              key: _formKey,
               child: Column(
                 children: [
                   InputComponent(
                     label: 'Email',
+                    controller: _emailEC,
                     validator: AppValidator.required('Obrigatório'),
                   ),
                   const SizedBox(
@@ -37,15 +55,35 @@ class CrudAuthLoginEmailPage extends StatelessWidget {
                   ),
                   InputComponent(
                     label: 'Senha',
+                    obscured: true,
+                    controller: _passwordEC,
                     validator: AppValidator.required('Obrigatório'),
                   ),
                   const SizedBox(
                     height: AppDimension.size_3,
                   ),
-                  ButtonComponent(
-                    color: color,
-                    child: const Text('Logar'),
-                    func: () {},
+                  BlocBuilder<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
+                    bloc: bloc,
+                    builder: (context, state) {
+                      return LoaderComponent(
+                        color: color,
+                        loading: state is CrudAuthLoginEmailLoading,
+                        child: ButtonComponent(
+                          color: color,
+                          child: const Text('Logar'),
+                          func: () {
+                            if (_formKey.currentState!.validate()) {
+                              bloc.signInWithEmailAndPassword(
+                                UserRequestModel(
+                                  email: _emailEC.text,
+                                  password: _passwordEC.text,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      );
+                    },
                   )
                 ],
               ),

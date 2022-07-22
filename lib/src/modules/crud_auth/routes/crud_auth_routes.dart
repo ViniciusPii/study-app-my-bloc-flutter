@@ -17,7 +17,7 @@ class CrudAuthRoutes {
     crudAuthHome: (context) => CrudAuthHomePage(),
     crudAuthLogin: (context) => CrudAuthLoginPage(),
     crudAuthSplash: (context) => CrudAuthSplashPage(),
-    crudAuthLoginEmail: (context) => const CrudAuthLoginEmailPage(),
+    crudAuthLoginEmail: (context) => CrudAuthLoginEmailPage(),
     crudAuthCreateAccount: (context) => CrudAuthCreateAccountPage(),
   };
 }

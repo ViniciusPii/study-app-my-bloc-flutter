@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:superapp_my_bloc/src/core/exceptions/app_exception.dart';
+import 'package:superapp_my_bloc/src/modules/crud_auth/models/request/user_request_model.dart';
 
 import 'auth_repository.dart';
 
@@ -30,22 +31,34 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> createUserWithEmailAndPassword(
-    String name,
-    String email,
-    String password,
-  ) async {
+  Future<void> createUserWithEmailAndPassword(UserRequestModel user) async {
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
       );
-
-      await credential.user!.updateDisplayName(name);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw AppException(message: 'Não foi possível realizar o login!');
       } else if (e.code == 'email-already-in-use') {
+        throw AppException(message: 'Não foi possível realizar o login!');
+      }
+    } catch (e) {
+      throw AppException(message: 'Não foi possível realizar o login!');
+    }
+  }
+
+  @override
+  Future<void> signInWithEmailAndPassword(UserRequestModel user) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw AppException(message: 'Não foi possível realizar o login!');
+      } else if (e.code == 'wrong-password') {
         throw AppException(message: 'Não foi possível realizar o login!');
       }
     } catch (e) {
