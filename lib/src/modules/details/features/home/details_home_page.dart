@@ -5,12 +5,12 @@ import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
-import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
+import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/details/features/home/bloc/result_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/details/models/details_args_model.dart';
 import 'package:superapp_my_bloc/src/modules/details/routes/details_routes.dart';
@@ -76,7 +76,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             controller: _firstNumberEC,
             keyboardType: TextInputType.number,
             validator: AppValidator.required('Obrigatório'),
-            inputFormatters: [AppMasks.decimalMask(decimal: 0)],
+            inputFormatters: [AppMasks.onlyNumbersMask],
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -86,7 +86,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             controller: _secondNumberEC,
             keyboardType: TextInputType.number,
             validator: AppValidator.required('Obrigatório'),
-            inputFormatters: [AppMasks.decimalMask(decimal: 0)],
+            inputFormatters: [AppMasks.onlyNumbersMask],
           ),
           const SizedBox(
             height: AppDimension.size_3,
@@ -111,8 +111,8 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.calculate(
-                        int.parse(AppMasks.unMaskNumber(_firstNumberEC.text)),
-                        int.parse(AppMasks.unMaskNumber(_secondNumberEC.text)),
+                        AppMasks.onlyNumbersMask.unFormat(_firstNumberEC.text).toInt(),
+                        AppMasks.onlyNumbersMask.unFormat(_secondNumberEC.text).toInt(),
                       );
                     }
                   },

@@ -5,10 +5,10 @@ import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
-import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
+import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/crud/feature/bloc/user_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud/models/user_model.dart';
 

@@ -3,14 +3,16 @@ import 'package:superapp_my_bloc/src/core/components/base_view_component.dart';
 import 'package:superapp_my_bloc/src/core/components/button_component.dart';
 import 'package:superapp_my_bloc/src/core/components/input_component.dart';
 import 'package:superapp_my_bloc/src/core/components/loader_component.dart';
+import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
+import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
+import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
-import 'package:superapp_my_bloc/src/core/utils/masks/app_masks.dart';
+import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
-import 'package:superapp_my_bloc/src/core/utils/validators/app_validator.dart';
 import 'package:superapp_my_bloc/src/modules/imc/features/bloc/imc_bloc.dart';
 
 class ImcHomePage extends StatefulWidget {
@@ -71,15 +73,20 @@ class _ImcHomePageState extends State<ImcHomePage> {
   }
 
   Widget _buildResult(Color color) {
-    return BlocBuilder<ImcBloc, ImcState>(
+    return BlocConsumer<ImcBloc, ImcState>(
       bloc: bloc,
+      listener: (context, state) {
+        if (state is ImcError) {
+          SnackbarComponent.error(context, message: state.message);
+        }
+      },
       builder: (context, state) {
         return Visibility(
-          visible: state.imc != 0,
+          visible: state is ImcSuccess,
           child: Column(
             children: [
               Text(
-                'Seu imc é ${state.imc.toStringAsFixed(1)}',
+                'Seu imc é ${state.imc.toStringAsFixed(1).toString().replaceAll('.', ',')}',
                 style: AppFonts.bodyLarge(),
               ),
               const SizedBox(
@@ -106,7 +113,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             label: 'Altura',
             controller: _heightEC,
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.decimalMask()],
+            inputFormatters: [AppMasks.heightMask],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -117,7 +124,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             label: 'Peso',
             controller: _weightEC,
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.decimalMask()],
+            inputFormatters: [AppMasks.weightMask],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -135,8 +142,8 @@ class _ImcHomePageState extends State<ImcHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.imcCalculate(
-                        double.parse(AppMasks.unMaskNumber(_heightEC.text)),
-                        double.parse(AppMasks.unMaskNumber(_weightEC.text)),
+                        AppMasks.heightMask.unFormat(_heightEC.text).toDouble(),
+                        AppMasks.weightMask.unFormat(_weightEC.text).toDouble(),
                       );
 
                       FocusManager.instance.primaryFocus?.unfocus();

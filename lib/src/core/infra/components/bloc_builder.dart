@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:superapp_my_bloc/src/core/infra/bloc.dart';
 
 class BlocBuilder<B extends Bloc, S extends Object> extends StatelessWidget {

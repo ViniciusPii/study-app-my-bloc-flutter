@@ -57,6 +57,10 @@ class MaskTextInputFormatter implements TextInputFormatter {
     return _resultTextArray.toString();
   }
 
+  num getUnformattedValue() {
+    return num.parse(_resultTextArray.toString());
+  }
+
   bool isFill() {
     return _resultTextArray.length == _maskLength;
   }

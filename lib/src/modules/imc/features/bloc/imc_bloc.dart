@@ -12,20 +12,24 @@ class ImcBloc extends Bloc<ImcState> {
     String result = '';
     double imc = weight / (height * height) * 100;
 
-    if (imc < 18.5) {
-      result = 'Abaixo do peso';
-    } else if (imc <= 24.9) {
-      result = 'Peso normal';
-    } else if (imc <= 29.9) {
-      result = 'Sobrepeso';
-    } else if (imc <= 34.9) {
-      result = 'Obesidade 1';
-    } else if (imc <= 39.9) {
-      result = 'Obesidade 2';
+    if (imc.isNaN || imc == 0 || imc.isInfinite) {
+      emit(ImcError(message: 'Altura ou peso inválidos!'));
     } else {
-      result = 'Obesidade 3';
-    }
+      if (imc < 18.5) {
+        result = 'Abaixo do peso';
+      } else if (imc <= 24.9) {
+        result = 'Peso normal';
+      } else if (imc <= 29.9) {
+        result = 'Sobrepeso';
+      } else if (imc <= 34.9) {
+        result = 'Obesidade 1';
+      } else if (imc <= 39.9) {
+        result = 'Obesidade 2';
+      } else {
+        result = 'Obesidade 3';
+      }
 
-    emit(ImcSuccess(imc: imc, result: result));
+      emit(ImcSuccess(imc: imc, result: result));
+    }
   }
 }
