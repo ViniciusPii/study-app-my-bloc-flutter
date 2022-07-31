@@ -86,7 +86,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
           child: Column(
             children: [
               Text(
-                'Seu imc é ${state.imc.toStringAsFixed(1).toString().replaceAll('.', ',')}',
+                'Seu imc é ${state.imc.toStringAsFixed(2)}',
                 style: AppFonts.bodyLarge(),
               ),
               const SizedBox(
@@ -113,7 +113,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             label: 'Altura',
             controller: _heightEC,
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.heightMask],
+            inputFormatters: [AppMasks.twoDecimal],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -124,7 +124,7 @@ class _ImcHomePageState extends State<ImcHomePage> {
             label: 'Peso',
             controller: _weightEC,
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.weightMask],
+            inputFormatters: [AppMasks.twoDecimal],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -142,8 +142,8 @@ class _ImcHomePageState extends State<ImcHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.imcCalculate(
-                        AppMasks.heightMask.unFormat(_heightEC.text).toDouble(),
-                        AppMasks.weightMask.unFormat(_weightEC.text).toDouble(),
+                        AppMasks.twoDecimal.parse(_heightEC.text).toDouble(),
+                        AppMasks.twoDecimal.parse(_weightEC.text).toDouble(),
                       );
 
                       FocusManager.instance.primaryFocus?.unfocus();

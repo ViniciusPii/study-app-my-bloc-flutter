@@ -1,36 +1,17 @@
 import 'package:flutter/services.dart';
-import 'package:superapp_my_bloc/src/core/infra/utils/mask_text_input_formatter.dart';
-import 'package:superapp_my_bloc/src/core/infra/utils/number_decimal_input_formatter.dart';
+import 'package:superapp_my_bloc/src/core/infra/utils/masks/mask_text_input_formatter.dart';
+import 'package:superapp_my_bloc/src/core/infra/utils/masks/number_decimal_input_formatter.dart';
 
 class AppMasks {
   AppMasks._();
 
-  static NumberDecimalInputFormatter moneyMask = NumberDecimalInputFormatter(
-    symbol: 'R\$',
-    locale: 'pt_Br',
-  );
+  static final money = NumberDecimalInputFormatter(symbol: 'R\$');
+  static final twoDecimal = NumberDecimalInputFormatter(symbol: '');
+  static final onlyNumbers = NumberDecimalInputFormatter(symbol: '', decimalDigits: 0);
 
-  static NumberDecimalInputFormatter heightMask = NumberDecimalInputFormatter(
-    symbol: '',
-    locale: 'pt_Br',
-  );
+  static final cep = MaskTextInputFormatter(mask: '#####-###');
 
-  static NumberDecimalInputFormatter weightMask = NumberDecimalInputFormatter(
-    symbol: '',
-    locale: 'pt_Br',
-  );
-
-  static NumberDecimalInputFormatter onlyNumbersMask = NumberDecimalInputFormatter(
-    symbol: '',
-    locale: 'pt_Br',
-    decimalDigits: 0,
-  );
-
-  static MaskTextInputFormatter cepMask = MaskTextInputFormatter(
-    mask: '#####-###',
-  );
-
-  static FilteringTextInputFormatter onlyLetters = FilteringTextInputFormatter.allow(
+  static final onlyLetters = FilteringTextInputFormatter.allow(
     RegExp('[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+|s'),
   );
 }

@@ -77,7 +77,7 @@ class _CepHomePageState extends State<CepHomePage> {
             label: 'Cep',
             controller: _cepEC,
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.cepMask],
+            inputFormatters: [AppMasks.cep],
             validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
@@ -115,7 +115,7 @@ class _CepHomePageState extends State<CepHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.getAddress(
-                        AppMasks.cepMask.getUnformattedValue().toInt(),
+                        AppMasks.cep.parse(_cepEC.text).toInt(),
                       );
                     }
                   },

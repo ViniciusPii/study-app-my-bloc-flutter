@@ -61,6 +61,15 @@ class MaskTextInputFormatter implements TextInputFormatter {
     return num.parse(_resultTextArray.toString());
   }
 
+  String format(String value) {
+    return MaskTextInputFormatter(mask: _mask, filter: _maskFilter, initialText: value)
+        .getMaskedText();
+  }
+
+  num parse(String value) {
+    return num.parse(value.replaceAll(RegExp('[^0-9]'), ''));
+  }
+
   bool isFill() {
     return _resultTextArray.length == _maskLength;
   }
@@ -68,11 +77,6 @@ class MaskTextInputFormatter implements TextInputFormatter {
   void clear() {
     _resultTextMasked = "";
     _resultTextArray.clear();
-  }
-
-  String maskText(String text) {
-    return MaskTextInputFormatter(mask: _mask, filter: _maskFilter, initialText: text)
-        .getMaskedText();
   }
 
   String unmaskText(String text) {

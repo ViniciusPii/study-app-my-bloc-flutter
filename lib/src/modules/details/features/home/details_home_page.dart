@@ -76,7 +76,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             controller: _firstNumberEC,
             keyboardType: TextInputType.number,
             validator: AppValidator.required('Obrigatório'),
-            inputFormatters: [AppMasks.onlyNumbersMask],
+            inputFormatters: [AppMasks.onlyNumbers],
           ),
           const SizedBox(
             height: AppDimension.size_2,
@@ -86,7 +86,7 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
             controller: _secondNumberEC,
             keyboardType: TextInputType.number,
             validator: AppValidator.required('Obrigatório'),
-            inputFormatters: [AppMasks.onlyNumbersMask],
+            inputFormatters: [AppMasks.onlyNumbers],
           ),
           const SizedBox(
             height: AppDimension.size_3,
@@ -111,8 +111,8 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
                   func: () {
                     if (_formKey.currentState!.validate()) {
                       bloc.calculate(
-                        AppMasks.onlyNumbersMask.unFormat(_firstNumberEC.text).toInt(),
-                        AppMasks.onlyNumbersMask.unFormat(_secondNumberEC.text).toInt(),
+                        AppMasks.onlyNumbers.parse(_firstNumberEC.text).toInt(),
+                        AppMasks.onlyNumbers.parse(_secondNumberEC.text).toInt(),
                       );
                     }
                   },

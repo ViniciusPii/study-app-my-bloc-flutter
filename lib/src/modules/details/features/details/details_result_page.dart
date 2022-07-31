@@ -24,7 +24,7 @@ class DetailsResultPage extends StatelessWidget {
 
   Widget _buildResult(args) {
     return Text(
-      'O resultado é ${AppMasks.onlyNumbersMask.format(args.result.toString())}',
+      'O resultado é ${AppMasks.onlyNumbers.format(args.result.toString())}',
       style: AppFonts.titleLarge(),
     );
   }

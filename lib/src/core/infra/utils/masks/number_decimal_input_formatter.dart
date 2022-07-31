@@ -87,7 +87,7 @@ class NumberDecimalInputFormatter extends TextInputFormatter {
     return _newString;
   }
 
-  num unFormat(String value) {
+  num parse(String value) {
     return num.parse(value.replaceAll(RegExp('[^0-9]'), ''));
   }
 }
