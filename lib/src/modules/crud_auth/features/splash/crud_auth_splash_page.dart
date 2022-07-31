@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/splash/bloc/crud_auth_splash_bloc.dart';
 

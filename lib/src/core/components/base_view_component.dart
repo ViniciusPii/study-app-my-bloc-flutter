@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
 
 class BaseViewComponent extends StatelessWidget {
   const BaseViewComponent({

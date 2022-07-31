@@ -8,9 +8,9 @@ import 'package:superapp_my_bloc/src/core/components/three_bounce_component.dart
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
 import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/home/bloc/crud_auth_home_bloc.dart';
@@ -117,7 +117,7 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
                   InputComponent(
                     label: 'Nome',
                     controller: _nameEC,
-                    inputFormatters: [AppMasks.onlyLetters],
+                    masks: [AppMasks.onlyLetters],
                     validator: AppValidator.required('Obrigatório'),
                   ),
                   const SizedBox(

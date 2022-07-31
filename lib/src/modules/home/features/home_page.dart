@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:superapp_my_bloc/src/core/components/card_component.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/colors/app_colors.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/routes/cep_routes.dart';
 import 'package:superapp_my_bloc/src/modules/counter/routes/counter_routes.dart';
 import 'package:superapp_my_bloc/src/modules/crud/routes/crud_routes.dart';

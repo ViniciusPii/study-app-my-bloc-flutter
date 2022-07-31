@@ -8,9 +8,9 @@ import 'package:superapp_my_bloc/src/core/infra/components/bloc_builder.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/imc/features/bloc/imc_bloc.dart';
@@ -112,8 +112,8 @@ class _ImcHomePageState extends State<ImcHomePage> {
             suffix: 'm',
             label: 'Altura',
             controller: _heightEC,
+            masks: [AppMasks.twoDecimal],
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.twoDecimal],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(
@@ -123,8 +123,8 @@ class _ImcHomePageState extends State<ImcHomePage> {
             suffix: 'Kg',
             label: 'Peso',
             controller: _weightEC,
+            masks: [AppMasks.twoDecimal],
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.twoDecimal],
             validator: AppValidator.required('Campo obrigatório'),
           ),
           const SizedBox(

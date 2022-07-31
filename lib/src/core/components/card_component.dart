@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
 class CardComponent extends StatelessWidget {

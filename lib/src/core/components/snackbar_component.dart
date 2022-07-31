@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_colors.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/colors/app_colors.dart';
 
 enum SnackBarType {
   info,
@@ -14,21 +13,21 @@ final _snackBarType = <SnackBarType, dynamic>{
   SnackBarType.info: {
     'color': AppColors.neutral800,
     'icon': const Icon(
-      FontAwesomeIcons.triangleExclamation,
+      Icons.warning_rounded,
       color: AppColors.white,
     )
   },
   SnackBarType.success: {
     'color': AppColors.green,
     'icon': const Icon(
-      FontAwesomeIcons.solidCircleCheck,
+      Icons.check_circle_rounded,
       color: AppColors.white,
     )
   },
   SnackBarType.error: {
     'color': AppColors.red,
     'icon': const Icon(
-      FontAwesomeIcons.solidCircleXmark,
+      Icons.cancel,
       color: AppColors.white,
     )
   },

@@ -7,7 +7,7 @@ import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/page_widget.dart';
 import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/features/auth/create_account/bloc/crud_auth_create_account_bloc.dart';
 import 'package:superapp_my_bloc/src/modules/crud_auth/models/request/user_request_model.dart';

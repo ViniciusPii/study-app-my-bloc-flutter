@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
-import 'app_dimension.dart';
 import 'app_extension.dart';
-import 'app_fonts.dart';
+import 'design_system/app_fonts.dart';
 
 class AppTheme {
   AppTheme._();
@@ -23,6 +24,7 @@ class AppTheme {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: AppExtension.primary,
           secondary: AppExtension.secondary,
+          onPrimary: Utils.getLuminance(AppExtension.primary),
         ),
       );
 }

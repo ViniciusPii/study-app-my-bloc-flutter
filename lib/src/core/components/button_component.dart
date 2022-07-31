@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_material_colors.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/colors/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
 class ButtonComponent extends StatelessWidget {
@@ -23,7 +23,7 @@ class ButtonComponent extends StatelessWidget {
         primary: color,
         onPrimary: Utils.getLuminance(color),
         textStyle: AppFonts.bodyLarge(
-          color: AppMaterialColors.red,
+          color: AppColors.red,
         ),
       ),
       child: child,

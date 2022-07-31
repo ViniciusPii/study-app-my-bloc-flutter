@@ -6,24 +6,26 @@ class InputComponent extends StatelessWidget {
     Key? key,
     required this.label,
     required this.validator,
+    this.masks,
     this.suffix,
     this.controller,
     this.keyboardType,
-    this.inputFormatters,
     this.onFieldSubmitted,
     this.obscured = false,
+    this.capitalization = true,
     this.textInputAction = TextInputAction.next,
   }) : super(key: key);
 
   final String label;
   final bool obscured;
   final String? suffix;
+  final bool capitalization;
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
+  final List<TextInputFormatter>? masks;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onFieldSubmitted;
-  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +39,13 @@ class InputComponent extends StatelessWidget {
       autofocus: true,
       validator: validator,
       obscureText: obscured,
+      inputFormatters: masks,
       controller: controller,
       keyboardType: keyboardType,
-      inputFormatters: inputFormatters,
       textInputAction: textInputAction,
       onFieldSubmitted: onFieldSubmitted,
-      textCapitalization: TextCapitalization.sentences,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      textCapitalization: capitalization ? TextCapitalization.sentences : TextCapitalization.none,
     );
   }
 }

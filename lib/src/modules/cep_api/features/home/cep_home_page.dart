@@ -7,9 +7,9 @@ import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/theme/app_extension.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_fonts.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
 import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/cep_api/features/home/bloc/address_bloc.dart';
@@ -76,8 +76,8 @@ class _CepHomePageState extends State<CepHomePage> {
           InputComponent(
             label: 'Cep',
             controller: _cepEC,
+            masks: [AppMasks.cep],
             keyboardType: TextInputType.number,
-            inputFormatters: [AppMasks.cep],
             validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(

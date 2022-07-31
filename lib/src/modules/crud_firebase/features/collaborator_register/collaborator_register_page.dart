@@ -7,7 +7,7 @@ import 'package:superapp_my_bloc/src/core/components/snackbar_component.dart';
 import 'package:superapp_my_bloc/src/core/infra/components/bloc_consumer.dart';
 import 'package:superapp_my_bloc/src/core/infra/di/dependon.dart';
 import 'package:superapp_my_bloc/src/core/infra/utils/validators/app_validator.dart';
-import 'package:superapp_my_bloc/src/core/theme/app_dimension.dart';
+import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart';
 import 'package:superapp_my_bloc/src/core/utils/app_masks.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 import 'package:superapp_my_bloc/src/modules/crud_firebase/features/collaborator_register/bloc/collaborator_register_bloc.dart';
@@ -66,7 +66,7 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
           InputComponent(
             label: 'Nome',
             controller: _nameEC,
-            inputFormatters: [AppMasks.onlyLetters],
+            masks: [AppMasks.onlyLetters],
             validator: AppValidator.required('Obrigatório'),
           ),
           const SizedBox(
