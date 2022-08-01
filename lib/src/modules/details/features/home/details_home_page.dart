@@ -53,15 +53,14 @@ class _DetailsHomePageState extends State<DetailsHomePage> {
         title: const Text('Home'),
       ),
       body: BaseViewComponent(
-        child: Column(
-          children: [
-            _buildTitle(),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            _buildForm(color),
-          ],
-        ),
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_5,
+          ),
+          _buildForm(color),
+        ],
       ),
     );
   }

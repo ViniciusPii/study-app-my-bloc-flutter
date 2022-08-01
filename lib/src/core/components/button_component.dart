@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:superapp_my_bloc/src/core/theme/design_system/app_fonts.dart';
-import 'package:superapp_my_bloc/src/core/theme/design_system/colors/app_colors.dart';
 import 'package:superapp_my_bloc/src/core/utils/utils.dart';
 
 class ButtonComponent extends StatelessWidget {
@@ -22,9 +20,6 @@ class ButtonComponent extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         primary: color,
         onPrimary: Utils.getLuminance(color),
-        textStyle: AppFonts.bodyLarge(
-          color: AppColors.red,
-        ),
       ),
       child: child,
     );

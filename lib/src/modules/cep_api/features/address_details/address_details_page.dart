@@ -20,20 +20,18 @@ class AddressDetailsPage extends StatelessWidget {
         title: const Text('Endereço'),
       ),
       body: BaseViewComponent(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildTitle(),
-            const SizedBox(
-              height: AppDimension.size_3,
-            ),
-            _buildCard(args),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            _buildButton(args, context)
-          ],
-        ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_3,
+          ),
+          _buildCard(args),
+          const SizedBox(
+            height: AppDimension.size_5,
+          ),
+          _buildButton(args, context)
+        ],
       ),
     );
   }

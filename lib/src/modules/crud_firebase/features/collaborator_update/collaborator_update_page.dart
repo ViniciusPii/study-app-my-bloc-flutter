@@ -58,10 +58,8 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
         backgroundColor: color,
         title: Text('Editando ${collaborator.name}'),
       ),
-      body: BaseViewComponent(
-        child: Center(
-          child: _buildForm(),
-        ),
+      body: Center(
+        child: _buildForm(),
       ),
     );
   }
@@ -69,8 +67,7 @@ class _CollaboratorUpdatePageState extends State<CollaboratorUpdatePage> {
   Widget _buildForm() {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: BaseViewComponent(
         children: [
           InputComponent(
             label: 'Nome',

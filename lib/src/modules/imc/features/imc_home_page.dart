@@ -54,19 +54,17 @@ class _ImcHomePageState extends State<ImcHomePage> {
       ),
       body: SingleChildScrollView(
         child: BaseViewComponent(
-          child: Column(
-            children: [
-              _buildTitle(),
-              const SizedBox(
-                height: AppDimension.size_5,
-              ),
-              _buildForm(color),
-              const SizedBox(
-                height: AppDimension.size_3,
-              ),
-              _buildResult(color)
-            ],
-          ),
+          children: [
+            _buildTitle(),
+            const SizedBox(
+              height: AppDimension.size_5,
+            ),
+            _buildForm(color),
+            const SizedBox(
+              height: AppDimension.size_3,
+            ),
+            _buildResult(color)
+          ],
         ),
       ),
     );

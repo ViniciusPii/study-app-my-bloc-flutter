@@ -44,16 +44,14 @@ class _CollaboratorListPageState extends State<CollaboratorListPage> {
         title: const Text('Lista de funcionários'),
       ),
       body: BaseViewComponent(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle(),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            _buildListView(color),
-          ],
-        ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_5,
+          ),
+          _buildListView(color),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed(

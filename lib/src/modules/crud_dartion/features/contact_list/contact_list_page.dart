@@ -54,16 +54,14 @@ class _ContactListPageState extends State<ContactListPage> {
         title: const Text('Home'),
       ),
       body: BaseViewComponent(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle(),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            _buildList(color),
-          ],
-        ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_5,
+          ),
+          _buildList(color),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {

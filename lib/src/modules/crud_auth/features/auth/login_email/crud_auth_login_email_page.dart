@@ -41,89 +41,87 @@ class CrudAuthLoginEmailPage extends PageWidget<CrudAuthLoginEmailBloc> {
       body: Center(
         child: SingleChildScrollView(
           child: BaseViewComponent(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      InputComponent(
-                        label: 'Email',
-                        controller: _emailEC,
-                        validator: AppValidator.required('Obrigatório'),
-                      ),
-                      const SizedBox(
-                        height: AppDimension.size_2,
-                      ),
-                      InputComponent(
-                        label: 'Senha',
-                        obscured: true,
-                        controller: _passwordEC,
-                        validator: AppValidator.required('Obrigatório'),
-                      ),
-                      const SizedBox(
-                        height: AppDimension.size_3,
-                      ),
-                      BlocConsumer<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
-                        bloc: bloc,
-                        listener: (context, state) {
-                          if (state is CrudAuthLoginEmailError) {
-                            SnackbarComponent.error(
-                              context,
-                              message: state.message,
-                            );
-                          }
-                        },
-                        builder: (context, state) {
-                          return LoaderComponent(
-                            color: color,
-                            loading: state is CrudAuthLoginEmailLoading,
-                            child: ButtonComponent(
-                              color: color,
-                              child: const Text('Logar'),
-                              func: () {
-                                if (_formKey.currentState!.validate()) {
-                                  bloc.signInWithEmailAndPassword(
-                                    UserRequestModel(
-                                      email: _emailEC.text,
-                                      password: _passwordEC.text,
-                                    ),
-                                  );
-                                }
-                              },
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: AppDimension.size_5,
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: AppDimension.size_3,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Form(
+                key: _formKey,
+                child: Column(
                   children: [
-                    const Text('Não tem uma conta?'),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pushNamed(
-                        CrudAuthRoutes.crudAuthCreateAccount,
-                        arguments: color,
-                      ),
-                      style: TextButton.styleFrom(
-                        primary: AppColors.blue,
-                      ),
-                      child: const Text('Criar já!'),
+                    InputComponent(
+                      label: 'Email',
+                      controller: _emailEC,
+                      validator: AppValidator.required('Obrigatório'),
+                    ),
+                    const SizedBox(
+                      height: AppDimension.size_2,
+                    ),
+                    InputComponent(
+                      label: 'Senha',
+                      obscured: true,
+                      controller: _passwordEC,
+                      validator: AppValidator.required('Obrigatório'),
+                    ),
+                    const SizedBox(
+                      height: AppDimension.size_3,
+                    ),
+                    BlocConsumer<CrudAuthLoginEmailBloc, CrudAuthLoginEmailState>(
+                      bloc: bloc,
+                      listener: (context, state) {
+                        if (state is CrudAuthLoginEmailError) {
+                          SnackbarComponent.error(
+                            context,
+                            message: state.message,
+                          );
+                        }
+                      },
+                      builder: (context, state) {
+                        return LoaderComponent(
+                          color: color,
+                          loading: state is CrudAuthLoginEmailLoading,
+                          child: ButtonComponent(
+                            color: color,
+                            child: const Text('Logar'),
+                            func: () {
+                              if (_formKey.currentState!.validate()) {
+                                bloc.signInWithEmailAndPassword(
+                                  UserRequestModel(
+                                    email: _emailEC.text,
+                                    password: _passwordEC.text,
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        );
+                      },
                     )
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              const SizedBox(
+                height: AppDimension.size_5,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: AppDimension.size_3,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Não tem uma conta?'),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pushNamed(
+                      CrudAuthRoutes.crudAuthCreateAccount,
+                      arguments: color,
+                    ),
+                    style: TextButton.styleFrom(
+                      primary: AppColors.blue,
+                    ),
+                    child: const Text('Criar já!'),
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),

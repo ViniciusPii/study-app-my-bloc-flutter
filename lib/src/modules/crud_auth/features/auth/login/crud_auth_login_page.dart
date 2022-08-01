@@ -23,18 +23,14 @@ class CrudAuthLoginPage extends PageWidget<CrudAuthLoginBloc> {
 
     return Scaffold(
       body: BaseViewComponent(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildTitle(),
-              const SizedBox(
-                height: AppDimension.size_3,
-              ),
-              _buildButtons(context, color)
-            ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_3,
           ),
-        ),
+          _buildButtons(context, color)
+        ],
       ),
     );
   }

@@ -47,43 +47,41 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
           )
         ],
       ),
-      body: BaseViewComponent(
-        child: BlocBuilder<CrudAuthHomeBloc, CrudAuthHomeState>(
-          bloc: bloc,
-          builder: (context, state) {
-            if (bloc.user.displayName == null) {
-              return Center(
-                child: ThreeBounceComponent(
-                  color: color,
-                ),
-              );
-            }
-
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  bloc.user.displayName!,
-                  style: AppFonts.titleLarge(),
-                ),
-                Text(
-                  bloc.user.email!,
-                  style: AppFonts.bodyLarge(),
-                ),
-                const SizedBox(
-                  height: AppDimension.size_3,
-                ),
-                ButtonComponent(
-                  color: color,
-                  func: () {
-                    _buildBottomSheet(context, color);
-                  },
-                  child: const Text('Mudar Nome'),
-                ),
-              ],
+      body: BlocBuilder<CrudAuthHomeBloc, CrudAuthHomeState>(
+        bloc: bloc,
+        builder: (context, state) {
+          if (bloc.user.displayName == null) {
+            return Center(
+              child: ThreeBounceComponent(
+                color: color,
+              ),
             );
-          },
-        ),
+          }
+
+          return BaseViewComponent(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                bloc.user.displayName!,
+                style: AppFonts.titleLarge(),
+              ),
+              Text(
+                bloc.user.email!,
+                style: AppFonts.bodyLarge(),
+              ),
+              const SizedBox(
+                height: AppDimension.size_3,
+              ),
+              ButtonComponent(
+                color: color,
+                func: () {
+                  _buildBottomSheet(context, color);
+                },
+                child: const Text('Mudar Nome'),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -98,7 +96,7 @@ class CrudAuthHomePage extends PageWidget<CrudAuthHomeBloc> {
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          child: BaseViewComponent(
+          child: Center(
             child: Form(
               key: _formKey,
               child: Column(

@@ -40,71 +40,69 @@ class CrudAuthCreateAccountPage extends PageWidget<CrudAuthCreateAccountBloc> {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: BaseViewComponent(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InputComponent(
-                    label: 'Nome',
-                    controller: _nameEC,
-                    validator: AppValidator.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_2,
-                  ),
-                  InputComponent(
-                    label: 'Email',
-                    controller: _emailEC,
-                    validator: AppValidator.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_2,
-                  ),
-                  InputComponent(
-                    label: 'Senha',
-                    obscured: true,
-                    controller: _passwordEC,
-                    validator: AppValidator.required('Obrigatório'),
-                  ),
-                  const SizedBox(
-                    height: AppDimension.size_3,
-                  ),
-                  BlocConsumer<CrudAuthCreateAccountBloc, CrudAuthCreateAccountState>(
-                    bloc: bloc,
-                    listener: (context, state) {
-                      if (state is CrudAuthCreateAccountError) {
-                        SnackbarComponent.error(
-                          context,
-                          message: state.message,
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      return LoaderComponent(
-                        color: color,
-                        loading: state is CrudAuthCreateAccountLoading,
-                        child: ButtonComponent(
-                          color: color,
-                          func: () {
-                            if (_formKey.currentState!.validate()) {
-                              bloc.createUserWithEmailAndPassword(
-                                UserRequestModel(
-                                  name: _nameEC.text,
-                                  email: _emailEC.text,
-                                  password: _passwordEC.text,
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text('Cadastrar'),
-                        ),
+          child: Form(
+            key: _formKey,
+            child: BaseViewComponent(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InputComponent(
+                  label: 'Nome',
+                  controller: _nameEC,
+                  validator: AppValidator.required('Obrigatório'),
+                ),
+                const SizedBox(
+                  height: AppDimension.size_2,
+                ),
+                InputComponent(
+                  label: 'Email',
+                  controller: _emailEC,
+                  validator: AppValidator.required('Obrigatório'),
+                ),
+                const SizedBox(
+                  height: AppDimension.size_2,
+                ),
+                InputComponent(
+                  label: 'Senha',
+                  obscured: true,
+                  controller: _passwordEC,
+                  validator: AppValidator.required('Obrigatório'),
+                ),
+                const SizedBox(
+                  height: AppDimension.size_3,
+                ),
+                BlocConsumer<CrudAuthCreateAccountBloc, CrudAuthCreateAccountState>(
+                  bloc: bloc,
+                  listener: (context, state) {
+                    if (state is CrudAuthCreateAccountError) {
+                      SnackbarComponent.error(
+                        context,
+                        message: state.message,
                       );
-                    },
-                  )
-                ],
-              ),
+                    }
+                  },
+                  builder: (context, state) {
+                    return LoaderComponent(
+                      color: color,
+                      loading: state is CrudAuthCreateAccountLoading,
+                      child: ButtonComponent(
+                        color: color,
+                        func: () {
+                          if (_formKey.currentState!.validate()) {
+                            bloc.createUserWithEmailAndPassword(
+                              UserRequestModel(
+                                name: _nameEC.text,
+                                email: _emailEC.text,
+                                password: _passwordEC.text,
+                              ),
+                            );
+                          }
+                        },
+                        child: const Text('Cadastrar'),
+                      ),
+                    );
+                  },
+                )
+              ],
             ),
           ),
         ),

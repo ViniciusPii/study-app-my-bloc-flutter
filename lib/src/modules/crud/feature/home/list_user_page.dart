@@ -42,16 +42,14 @@ class _ListUserPageState extends State<ListUserPage> {
         title: const Text('Home'),
       ),
       body: BaseViewComponent(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTitle(),
-            const SizedBox(
-              height: AppDimension.size_5,
-            ),
-            _buildList(color),
-          ],
-        ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(),
+          const SizedBox(
+            height: AppDimension.size_5,
+          ),
+          _buildList(color),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

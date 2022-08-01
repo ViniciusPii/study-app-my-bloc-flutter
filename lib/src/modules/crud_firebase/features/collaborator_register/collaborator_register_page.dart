@@ -49,10 +49,8 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
         backgroundColor: color,
         title: const Text('Salvar colaborador'),
       ),
-      body: BaseViewComponent(
-        child: Center(
-          child: _buildForm(color),
-        ),
+      body: Center(
+        child: _buildForm(color),
       ),
     );
   }
@@ -60,8 +58,7 @@ class _CollaboratorRegisterPageState extends State<CollaboratorRegisterPage> {
   Widget _buildForm(color) {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: BaseViewComponent(
         children: [
           InputComponent(
             label: 'Nome',

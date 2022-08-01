@@ -53,16 +53,14 @@ class _CepHomePageState extends State<CepHomePage> {
       ),
       body: Center(
         child: BaseViewComponent(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildTitle(),
-              const SizedBox(
-                height: AppDimension.size_3,
-              ),
-              _buildForm(color),
-            ],
-          ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildTitle(),
+            const SizedBox(
+              height: AppDimension.size_3,
+            ),
+            _buildForm(color),
+          ],
         ),
       ),
     );

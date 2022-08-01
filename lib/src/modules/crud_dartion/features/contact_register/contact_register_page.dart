@@ -50,10 +50,8 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
         backgroundColor: color,
         title: const Text('Adicione seu contato'),
       ),
-      body: BaseViewComponent(
-        child: Center(
-          child: _buildForm(color),
-        ),
+      body: Center(
+        child: _buildForm(color),
       ),
     );
   }
@@ -61,8 +59,7 @@ class _ContactRegisterPageState extends State<ContactRegisterPage> {
   Widget _buildForm(Color color) {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: BaseViewComponent(
         children: [
           InputComponent(
             label: 'Nome',

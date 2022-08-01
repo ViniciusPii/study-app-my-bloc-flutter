@@ -47,10 +47,10 @@ class _FormUserPageState extends State<FormUserPage> {
         backgroundColor: color,
         title: const Text('Salvar Usuário'),
       ),
-      body: Center(
-        child: BaseViewComponent(
-          child: _buildForm(color),
-        ),
+      body: BaseViewComponent(
+        children: [
+          _buildForm(color),
+        ],
       ),
     );
   }

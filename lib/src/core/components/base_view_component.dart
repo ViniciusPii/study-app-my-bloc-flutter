@@ -4,19 +4,34 @@ import 'package:superapp_my_bloc/src/core/theme/design_system/app_dimension.dart
 class BaseViewComponent extends StatelessWidget {
   const BaseViewComponent({
     Key? key,
-    required this.child,
+    required this.children,
+    this.mainAxisAlignment = MainAxisAlignment.center,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
   }) : super(key: key);
 
-  final Widget child;
+  final List<Widget> children;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: AppDimension.size_2,
-        horizontal: AppDimension.size_3,
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppDimension.size_2,
+          horizontal: AppDimension.size_3,
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: crossAxisAlignment,
+            children: [
+              ...children,
+            ],
+          ),
+        ),
       ),
-      child: child,
     );
   }
 }

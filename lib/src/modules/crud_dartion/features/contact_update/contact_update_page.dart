@@ -58,10 +58,8 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
         backgroundColor: color,
         title: Text('Editando ${contact.name}'),
       ),
-      body: BaseViewComponent(
-        child: Center(
-          child: _buildForm(color),
-        ),
+      body: Center(
+        child: _buildForm(color),
       ),
     );
   }
@@ -69,8 +67,7 @@ class _ContactUpdatePageState extends State<ContactUpdatePage> {
   Widget _buildForm(Color color) {
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: BaseViewComponent(
         children: [
           InputComponent(
             label: 'Nome',
